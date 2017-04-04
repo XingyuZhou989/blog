@@ -5,6 +5,8 @@ title: About
 
 Hello.
 
-This will be your About page. Anything about you, it should be written here in details. You may describe your bio here like who you are, what you do, your intention, social site hyperlinks and how people can contact you, etc.
+This is my new blog written in English, and the previous [http://blog.csdn.net/mike190267481](CSDN blog) in Chinese will not be updated.
+
+I am a PhD student at the Ohio State University. [http://xingyuzhou.org](Academic Homepage).
 
 **Less is more..**
