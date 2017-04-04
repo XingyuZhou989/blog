@@ -5,10 +5,9 @@ title: About
 
 Hello.
 
-This is my new blog written in English, and the previous [CSDN blog](http://blog.csdn.net/mike190267481) in Chinese will not be updated.
+This is my new blog, and the previous [CSDN blog](http://blog.csdn.net/mike190267481)(in Chinese) will not be updated.
 
-I am a PhD student at the Ohio State University. [Academic page](http://xingyuzhou.org).
+I am Xingyu Zhou (周星宇), a PhD student at the Ohio State University. [Academic page](http://xingyuzhou.org). I hope I would have time to update regularly here, either in English or Chinese.
 
-周星宇
 
 **Less is more..**
