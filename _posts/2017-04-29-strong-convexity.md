@@ -22,6 +22,8 @@ Intuitively speaking, strong convexity means that there exists a quartic lower b
 
 Although the definition in $$\eqref{eq:def}$$ is commonly used, it would be quite useful for us to note that there are several equivalent conditions for strong convexity.
 
+<div class="divider"></div>
+
 ### Equivalent Conditions of Strong Convexity
 The following proposition gives equivalent conditions for strong convexity. The key insight behind this result and its proof is that we can relate a strongly-convex function ($$e.g., f(x)$$) to another convex function ($$e.g., g(x)$$), which enables us to apply the equivalent conditions for a convex function to obtain the result.
 
@@ -41,6 +43,7 @@ $$(ii) \equiv (iii):$$ It follows from the monotone gradient condition for conve
 
 $$(ii) \equiv (iv):$$ It simply follows from the definition of convexity, i.e., $$g(x)$$ is convex if $$g(\alpha x+ (1-\alpha) y) \le \alpha g(x) + (1-\alpha) g(y), ~\forall x,y, \alpha\in [0,1].$$ $$\tag*{$\Box$}$$
 
+<div class="divider"></div>
 
 ### Implications of Strong Convexity
 There are also some other conditions that are implied by strong convexity while are not equivalent to strong convexity, which means that these conditions are more general than strong convexity. 
@@ -99,6 +102,8 @@ $$
 
 Condition (d) is obtained by adding $$\eqref{eq:interchange}$$ and condition (c). $$\tag*{$\Box$}$$
 
+<div class="divider"></div>
+
 ### Application
 
 We have already seen the application of condition (iii) in proving useful results in the last section. In this section, let us look at one simple application of condition (iv) for strong convexity.
@@ -123,7 +128,8 @@ where the first inequality follows from the fact that $$f$$ is strongly convex; 
 
 **THE END**
 {: .center}
-***
+
+<div class="divider"></div>
 
 Now, it's time to take a break by appreciating the masterpiece of Monet.
 
