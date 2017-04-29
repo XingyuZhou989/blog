@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>Strong convexity · Xingyu Zhou's blog</title>
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="Strong convexity" />
+<meta name="twitter:description" content="Strong convexity is one of the most important concepts in optimization, especially for guaranteeing a linear convergence rate of many gradient decent based algorithms. In this post, which is mainly...">
+
+<meta name="description" content="Strong convexity is one of the most important concepts in optimization, especially for guaranteeing a linear convergence rate of many gradient decent based a...">
+
+
+
+<link rel="icon" href="/blog/assets/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/blog/assets/my-touch-icon.png">
+
+<!-- <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/assets/favicons/manifest.json">
+<link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/favicons/favicon.ico">
+<meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff"> -->
+
+
+<link rel="stylesheet" href="/blog/assets/core.css">
+<link rel="canonical" href="/blog/notes/strong-convexity">
+<link rel="alternate" type="application/atom+xml" title="Xingyu Zhou's blog" href="/blog/feed.xml" />
+
+
+
+<!-- 
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+ -->
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+	</head>
+
+	<body>
+
+		<aside class="logo">
+
+	
+
+	<a href="/blog/">
+		<!-- <img src="/blog/assets/xyz.jpg" class="gravatar"> -->
+		<img src="/blog/assets/xyz.jpg">
+	</a>
+	<span class="logo-prompt">Back to Home</span>
+
+</aside>
+
+
+		<main>
+			<article>
+
+	<div class="center">
+		<h1>Strong convexity</h1>
+		<time>April 28, 2017</time>
+	</div>
+
+	<div class="divider"></div>
+
+	<p>Strong convexity is one of the most important concepts in optimization, especially for guaranteeing a linear convergence rate of many gradient decent based algorithms. In this post, which is mainly based on my course project report, I would like to present some useful results on strong convexity.</p>
+
+<p>A differentiable function <script type="math/tex">f</script> is strongly convex if</p>
+
+<script type="math/tex; mode=display">f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2 \label{eq:def}</script>
+
+<p>for some <script type="math/tex">\mu > 0</script>. The <script type="math/tex">\eqref{eq:def}</script> is the 
+<!-- $$
+\begin{equation*}
+	\begin{split}
+		F(x_{k+1}) &= f(x_{k+1}) + g(x_{k+1})\\
+		& \mathop  \le \limits^{(a)} f(x_k) + \nabla f(x_k)^T(x_{k+1}-x_k) + \frac{L}{2}||x_{k+1} - x_k||^2 + g(x_{k+1})\\
+		& = F(x_k) + \nabla f(x_k)^T(x_{k+1}-x_k) + \frac{L}{2}||x_{k+1} - x_k||^2 + g(x_{k+1}) - g(x_k)\\
+		& \lep{b} F(x_k) - \frac{1}{2L}\mathcal{D}_g(x_k,L)\\
+		& \lep{c} F(x_k) - \frac{\mu}{L}\left[ F(x_k) - F^*\right]
+	\end{split}
+\end{equation*}
+$$ --></p>
+
+
+</article>
+
+<div class="page-navigation">
+	
+		<a class="home" href="/blog/" title="Back to Homepage">Home</a>
+  
+		<span> &middot; </span>
+    <a class="prev" href="/notes/welcome" title="PREV: Welcome">&gt;&gt;</a>
+  
+</div>
+
+		</main>
+
+		<div class="footer">
+  <!-- <span class="block">&lt;/&gt; <a href="http://github.com/heiswayi/the-plain" title="a minimalist Jekyll theme for personal blog">The Plain theme</a> by <a href="http://heiswayi.github.io">Heiswayi Nrird</a>.</span> -->
+  <span class="block">&copy; 2017 Xingyu Zhou</span>
+</div>
+
+
+	</body>
+
+</html>
