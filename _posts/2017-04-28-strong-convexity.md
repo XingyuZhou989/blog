@@ -31,7 +31,9 @@ $$ \begin{align}
 		&f(\alpha x+ (1-\alpha) y) \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)\mu}{2}||x-y||^2,\alpha \in [0,1].\\
 	\end{align} $$
 
-<!-- $$
+
+
+$$
 \begin{equation*}
 	\begin{split}
 		F(x_{k+1}) &= f(x_{k+1}) + g(x_{k+1})\\
@@ -41,4 +43,5 @@ $$ \begin{align}
 		& \lep{c} F(x_k) - \frac{\mu}{L}\left[ F(x_k) - F^*\right]
 	\end{split}
 \end{equation*}
-$$ -->
+$$
+$$
