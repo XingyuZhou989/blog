@@ -1,5 +1,5 @@
 ---
-comments: false
+comments: true
 title: Strong convexity
 updated: 2017-04-29 21:35
 ---
@@ -119,7 +119,20 @@ where the first inequality follows from the fact that $$f$$ is strongly convex; 
 
 **Note:** Although the proof is simple, it has its own importance. For example, any L2-regularized problem of the form $$h(x) = f(x)+ \lambda \lVert x \rVert^2$$, where $$f$$ is convex and $$\lambda >0$$, is strongly convex.
 
-![Monet](http://octodex.github.com/images/minion.png)
+**THE END**
+{: .center}
+***
+
+Now, it's time to take a break by appreciating the masterpiece of Monet.
+
+
+{: .center}
+![Monet](http://xingyuzhou.org/blog/assets/post_images/impression-sunrise.jpg){:height="400px" width="500px"}
+
+**Impression Sunrise**
+{: .center}
+_courtesy of www.Claude-Monet.com_
+{: .center}
 
 
 
