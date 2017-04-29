@@ -75,11 +75,13 @@
 
 	<p>Strong convexity is one of the most important concepts in optimization, especially for guaranteeing a linear convergence rate of many gradient decent based algorithms. In this post, which is mainly based on my course project report, I would like to present some useful results on strong convexity.</p>
 
+<p>Let’s us first begin with the definition.</p>
+
 <p>A differentiable function <script type="math/tex">f</script> is strongly convex if</p>
 
-<script type="math/tex; mode=display">f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2 \label{eq:def}</script>
+<script type="math/tex; mode=display">f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2 \tag{1}\label{eq:def}</script>
 
-<p>for some <script type="math/tex">\mu > 0</script>. The <script type="math/tex">\eqref{eq:def}</script> is the 
+<p>for some <script type="math/tex">\mu > 0</script> and all <script type="math/tex">x, y</script>. Note that the strong convexity doesn’t 
 <!-- $$
 \begin{equation*}
 	\begin{split}
@@ -102,7 +104,34 @@ $$ --></p>
 		<span> &middot; </span>
     <a class="prev" href="/notes/welcome" title="PREV: Welcome">&gt;&gt;</a>
   
+  
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "http://xingyuzhou.org/blog/notes/strong-convexity";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "/notes/strong-convexity"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://xingyublog.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                
+
+
+
+
 </div>
+
 
 		</main>
 

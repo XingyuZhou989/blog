@@ -1,17 +1,20 @@
 ---
+comments: true
 title: Strong convexity
 updated: 2017-04-28 21:35
 ---
 
 Strong convexity is one of the most important concepts in optimization, especially for guaranteeing a linear convergence rate of many gradient decent based algorithms. In this post, which is mainly based on my course project report, I would like to present some useful results on strong convexity. 
 
+Let's us first begin with the definition. 
+
 A differentiable function $$f$$ is strongly convex if 
 
 $$
-f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2 \label{eq:def}
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2 \tag{1}\label{eq:def}
 $$
 
-for some $$\mu > 0$$. The $$\eqref{eq:def}$$ is the 
+for some $$\mu > 0$$ and all $$x, y$$. Note that the strong convexity doesn't 
 <!-- $$
 \begin{equation*}
 	\begin{split}
