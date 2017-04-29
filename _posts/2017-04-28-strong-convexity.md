@@ -33,7 +33,7 @@ $$ \begin{align}
 
 
 
-$$
+<!-- $$
 \begin{equation*}
 	\begin{split}
 		F(x_{k+1}) &= f(x_{k+1}) + g(x_{k+1})\\
@@ -44,4 +44,4 @@ $$
 	\end{split}
 \end{equation*}
 $$
-$$
+$$ -->
