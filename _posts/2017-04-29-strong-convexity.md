@@ -117,7 +117,9 @@ $$
 
 where the first inequality follows from the fact that $$f$$ is strongly convex; the second inequality holds since $$g$$ is convex. 
 
-**Note:** Although the proof is simple, it has its own importance. For example, any L2-regularized problem of the form $$h(x) = f(x)+ \lambda \lVert x \rVert^2$$, where $$f$$ is convex and $$\lambda >0$$, is strongly convex.
+**Note:** Although the proof is simple, it has its own importance. For example, any L2-regularized problem of the form $$h(x) = f(x)+ \lambda \lVert x \rVert^2$$, where $$f$$ is convex and $$\lambda >0$$, is strongly convex. $$\tag*{$\Box$}$$
+
+
 
 **THE END**
 {: .center}
