@@ -23,15 +23,19 @@ Intuitively speaking, strong convexity means that there exists a quartic lower b
 Although the definition in $$\eqref{eq:def}$$ is commonly used, it would be quite useful for us to note that there are several equivalent definitions for strong convexity.
 
 ### Equivalent Definitions of strong convexity
+The following proposition gives equivalent definitions for strong convexity. The key insight behind this result and its proof is that we can relate a strongly-convex function ($$e.g., f(x)$$) to another convex function ($$e.g., g(x)$$), which enables us to apply the equivalent conditions for a convex function to obtain the result.
+
 > **_Proposition_** _The following conditions are all equivalent to the condition that a differentiable function $$f$$ is strongly-convex with constant $$\mu > 0$$_.
 $$ \begin{align}
-		&f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2,~\forall x, y.\\
-		&g(x) = f(x)-\frac{\mu}{2}||x||^2~\text{is convex},~\forall x.\\
-		&(\nabla f(x) - \nabla f(y)^T(x-y) \ge \mu ||x-y||^2,~\forall x, y.\\
-		&f(\alpha x+ (1-\alpha) y) \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)\mu}{2}||x-y||^2,\alpha \in [0,1].\\
+		&(i)~f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2,~\forall x, y.\\
+		&(ii)~g(x) = f(x)-\frac{\mu}{2}||x||^2~\text{is convex},~\forall x.\\
+		&(iii)~(\nabla f(x) - \nabla f(y)^T(x-y) \ge \mu ||x-y||^2,~\forall x, y.\\
+		&(iv)~f(\alpha x+ (1-\alpha) y) \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)\mu}{2}||x-y||^2,\alpha \in [0,1].\\
 	\end{align} $$
 
 _Proof:_ 
+
+$$(i) \equiv (ii):$$ It follows from the first-order condition for convexity of $$g(x)$$, i.e., $$g(x)$$ is convex if and only if $$g(y)\ge g(x) + \nabla g(x)^T(y-x),~\forall x,y.$$
 
 
 <!-- $$
