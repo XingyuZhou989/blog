@@ -1,5 +1,5 @@
 ---
-comments: true
+comments: false
 title: Strong convexity
 updated: 2017-04-28 21:35
 ---
@@ -14,7 +14,23 @@ $$
 f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2 \tag{1}\label{eq:def}
 $$
 
-for some $$\mu > 0$$ and all $$x, y$$. Note that the strong convexity doesn't 
+for some $$\mu > 0$$ and all $$x, y$$. 
+
+**Note:** Strong convexity doesn't necessarily require the function to be differentiable, and the gradient is replaced by the sub-gradient when the function is non-smooth.
+
+Intuitively speaking, strong convexity means that there exists a quartic lower bound on the growth of the function. This directly implies that a strong convex function is strictly convex since the quartic lower bound growth is of course strictly grater than the linear growth. 
+
+Although the definition in $$\eqref{eq:def}$$ is commonly used, it would be quite useful for us to note that there are several equivalent definitions for strong convexity.
+
+### Equivalent Definitions of strong convexity
+> **_Proposition_** _The following conditions are all equivalent to the condition that a differentiable function $$f$$ is strongly-convex with constant $$\mu > 0$$_.
+$$ \begin{align}
+		&f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}||y-x||^2,~\forall x, y.\\
+		&g(x) = f(x)-\frac{\mu}{2}||x||^2~\text{is convex},~\forall x.\\
+		&(\nabla f(x) - \nabla f(y)^T(x-y) \ge \mu ||x-y||^2,~\forall x, y.\\
+		&f(\alpha x+ (1-\alpha) y) \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)\mu}{2}||x-y||^2,\alpha \in [0,1].\\
+	\end{align} $$
+
 <!-- $$
 \begin{equation*}
 	\begin{split}
