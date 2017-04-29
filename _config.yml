@@ -1,0 +1,52 @@
+# Site Info
+title:              "Xingyu Zhou's blog"
+description:        "Original beauty lies here..."
+google_verify:      #epFgX0s_0RM3CdjwFcsewfXzPov2g8s9ZBOLyaIUH-o # Put your Google Verification here
+google_analytics:   UA-96750668-1 # Put your Google Analytics code
+
+# Author Info
+author_name:        "Xingyu Zhou" # Your name here
+author_email:       #zxy_ee@163.com # Your email here
+author_gravatar:    #2b38b1b0e7e08b69379bd61582adf0c8 # Your Gravatar md5 hash here for logo
+twitter_username:   #HeiswayiNrird # Your Twitter username here
+github_username:    XingyuZhou989 # Your GitHub username here
+
+# Site Settings
+baseurl:            "/blog" # Base URL must end WITHOUT a slash, default: ""
+permalink:          /notes/:title # Post permalink
+timezone:           Asia/Kuala_Lumpur # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+mathjax:            true  # enables support for mathjax - set to false to disable
+
+# Site Build
+highlighter:        rouge
+markdown:           kramdown
+kramdown:
+    input:          GFM
+sass:
+    style:          :compressed
+
+# Other Params
+include:            [ "robots.txt" ]
+exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile" ]
+gems:
+  - jekyll-sitemap
+  - jemoji
+
+
+
+defaults:
+  -
+    scope:
+      path:         ""
+    values:
+      layout:       "null"
+  -
+    scope:
+      type:         "pages"
+    values:
+      layout:       "page"
+  -
+    scope:
+      type:         "posts"
+    values:
+      layout:       "post"
