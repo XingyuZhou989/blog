@@ -1,5 +1,5 @@
 ---
-comments: false
+comments: true
 title: Strong convexity
 updated: 2017-04-28 21:35
 ---
@@ -31,6 +31,7 @@ $$ \begin{align}
 		&f(\alpha x+ (1-\alpha) y) \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)\mu}{2}||x-y||^2,\alpha \in [0,1].\\
 	\end{align} $$
 
+_Proof:_ 
 
 
 <!-- $$
