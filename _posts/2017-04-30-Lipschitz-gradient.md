@@ -73,7 +73,7 @@ $$
 
 As $$\alpha \downarrow 0$$, we get $$[5]$$.
 
-$$(5)\rightarrow(7)$$: Let $$z = \alpha x + (1-\alpha) y \in \mathbb{R}^n$$, we have 
+$$[5]\rightarrow[7]$$: Let $$z = \alpha x + (1-\alpha) y \in \mathbb{R}^n$$, we have 
 
 $$
 	f(x)\ge f(z)+\nabla f(z)^T(x-z)+\frac{1}{2L}\lVert \nabla f(x)-\nabla f(z)\rVert^2
