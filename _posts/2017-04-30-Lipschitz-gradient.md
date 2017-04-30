@@ -1,5 +1,5 @@
 ---
-comments: false
+comments: true
 title: Lipschitz continuous gradient
 updated: 2017-04-30 14:35
 ---
