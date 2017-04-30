@@ -24,9 +24,11 @@ img {
   max-width: 100%;
 }
 a {
-  color: inherit;
+  //color: inherit;
+  color: #369;
   text-decoration: none;
   border-bottom: 1px solid #555;
+  border-color: #369;
   &.image {
     display: block;
     text-align: center;
@@ -245,8 +247,10 @@ article {
     }
   }
   a:hover {
-    color: #369;
-    border-color: #369;
+    // color: #369;
+    // border-color: #369;
+    color: #000;
+    border-color: #000;
   }
 }
 .back {
@@ -261,6 +265,7 @@ article {
       content: "<<";
       margin-right: 5px;
       color: #000;
+    //color: #369;
     }
   }
 }
@@ -315,6 +320,7 @@ section {
         text-decoration: none;
         border: 0;
         color: #000;
+        //color: #369;
         box-sizing: border-box;
       }
       .post-date {
