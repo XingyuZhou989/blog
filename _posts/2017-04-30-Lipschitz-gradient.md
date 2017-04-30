@@ -15,7 +15,7 @@ As usual, let's us first begin with the definition.
 A differentiable function $$f$$ is said to have an L-Lipschitz continuous gradient if for some $$L>0$$
 
 $$
-\lVert \nabla f(x) - \nabla f{y}\rVert \le L \lVert x-y\rVert,~\forall x,y.
+\lVert \nabla f(x) - \nabla f(y)\rVert \le L \lVert x-y\rVert,~\forall x,y.
 $$
 
 **Note:** The definition doesn't assume convexity of $$f$$. 
