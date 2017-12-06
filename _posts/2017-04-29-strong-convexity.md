@@ -43,6 +43,8 @@ $$(ii) \equiv (iii):$$ It follows from the monotone gradient condition for conve
 
 $$(ii) \equiv (iv):$$ It simply follows from the definition of convexity, i.e., $$g(x)$$ is convex if $$g(\alpha x+ (1-\alpha) y) \le \alpha g(x) + (1-\alpha) g(y), ~\forall x,y, \alpha\in [0,1].$$ $$\tag*{$\Box$}$$
 
+**Note:** The equivalence still holds for non-smooth function with gradient replaced by sub-gradient. For a proof, please refer to my notes here.
+
 <div class="divider"></div>
 
 ### Implications of Strong Convexity
