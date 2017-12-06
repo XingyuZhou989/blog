@@ -209,9 +209,9 @@ Now, it's time to take a break by appreciating the masterpiece of Monet.
 
 
 {: .center}
-![test](http://xingyuzhou.org/blog/assets/post_images/kay.jpg)
+![Monet](http://xingyuzhou.org/blog/assets/post_images/pop.jpg){:height="400px" width="500px"}
 
-**tt**
+**The Poppy Field near Argenteuil**
 {: .center}
 _courtesy of www.Claude-Monet.com_
 {: .center}
