@@ -1,6 +1,6 @@
 ---
 comments: true
-title: Fenchel Duality
+title: Fenchel duality
 updated: 2017-12-05 23:00
 ---
 Last time, we have mentioned that there exists a duality between strong convexity and Lipschitz continuous gradient. In this post, we will explore this duality, which is often called _Fenchel duality_. 
