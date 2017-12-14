@@ -78,7 +78,7 @@ which implies based on the previous lemma
 
 $$	
 \begin{align*}
-		(s_x - s_y)^T (x-y) \ge \frac{1}{L} (s_x - s_y)~\forall x \in \partial f^*(s_x), y \in \partial f^*(s_y)
+		(s_x - s_y)^T (x-y) \ge \frac{1}{L} \lVert s_x - s_y \rVert^2~\forall x \in \partial f^*(s_x), y \in \partial f^*(s_y)
 \end{align*}
 $$
 
