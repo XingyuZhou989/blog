@@ -13,7 +13,7 @@ github_username:    XingyuZhou989 # Your GitHub username here
 
 # Site Settings
 baseurl:            "/blog" # Base URL must end WITHOUT a slash, default: ""
-permalink:          /:title #/notes/:title # Post permalink
+permalink:          /notes/:title # Post permalink
 timezone:           Asia/Kuala_Lumpur # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 mathjax:            true  # enables support for mathjax - set to false to disable
 
