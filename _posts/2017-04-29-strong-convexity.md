@@ -18,7 +18,7 @@ for some $$\mu > 0$$ and all $$x, y$$.
 
 **Note:** Strong convexity doesn't necessarily require the function to be differentiable, and the gradient is replaced by the sub-gradient when the function is non-smooth.
 
-Intuitively speaking, strong convexity means that there exists a quartic lower bound on the growth of the function. This directly implies that a strong convex function is strictly convex since the quartic lower bound growth is of course strictly grater than the linear growth. 
+Intuitively speaking, strong convexity means that there exists a quadratic lower bound on the growth of the function. This directly implies that a strong convex function is strictly convex since the quadratic lower bound growth is of course strictly grater than the linear growth. 
 
 Although the definition in $$\eqref{eq:def}$$ is commonly used, it would be quite useful for us to note that there are several equivalent conditions for strong convexity.
 
