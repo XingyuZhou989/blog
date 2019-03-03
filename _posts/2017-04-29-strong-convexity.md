@@ -31,7 +31,7 @@ The following proposition gives equivalent conditions for strong convexity. The 
 $$ \begin{align}
 		&(i)~f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}\lVert y-x \rVert^2,~\forall x, y.\\
 		&(ii)~g(x) = f(x)-\frac{\mu}{2}\lVert x \rVert^2~\text{is convex},~\forall x.\\
-		&(iii)~(\nabla f(x) - \nabla f(y)^T(x-y) \ge \mu \lVert x-y\rVert^2,~\forall x, y.\\
+		&(iii)~(\nabla f(x) - \nabla f(y))^T(x-y) \ge \mu \lVert x-y\rVert^2,~\forall x, y.\\
 		&(iv)~f(\alpha x+ (1-\alpha) y) \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)\mu}{2}\Vert x-y\rVert^2,~\alpha \in [0,1].\\
 	\end{align} $$
 
