@@ -114,6 +114,12 @@ $$
 Re-arranging gives the result. $$\tag*{$\Box$}$$
 
 
+### Citation
+Recently, I have received a lot of emails from my dear readers that inquire about how to cite the content in my blog. I am quite surprised and also glad that my blog posts are more welcome than expected. Fortunately, I have an arXiv paper that summarizes all the results. Here is the citation form: 
+
+> Zhou, Xingyu. "On the Fenchel Duality between Strong Convexity and Lipschitz Continuous Gradient." arXiv preprint arXiv:1803.06573 (2018).
+
+
 **THE END**
 {: .center}
 

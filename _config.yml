@@ -31,7 +31,9 @@ exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile" ]
 gems:
   - jekyll-sitemap
   - jemoji
-
+plugins:
+  - jekyll-sitemap
+  - jemoji
 
 
 defaults:
