@@ -14,4 +14,4 @@ This is my [academic page](http://xingyuzhou.org).
 I hope that I would have time to update regularly here, either in English or Chinese.
 
 
-**Less is more..**
+**Less is more...**
