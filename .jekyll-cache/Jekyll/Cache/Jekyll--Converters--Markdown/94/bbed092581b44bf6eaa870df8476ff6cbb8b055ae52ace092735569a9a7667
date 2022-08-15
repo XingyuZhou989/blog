@@ -1,0 +1,134 @@
+I"Q <p>Strong convexity is one of the most important concepts in optimization, especially for guaranteeing a linear convergence rate of many gradient decent based algorithms. In this post, which is mainly based on my course project report, I would like to present some useful results on strong convexity.</p>
+
+<p>Let’s us first begin with the definition.</p>
+
+<p>A differentiable function \(f\) is strongly convex if</p>
+
+\[f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}\lVert y-x \rVert^2 \tag{1}\label{eq:def}\]
+
+<p>for some \(\mu &gt; 0\) and all \(x, y\).</p>
+
+<p><strong>Note:</strong> Strong convexity doesn’t necessarily require the function to be differentiable, and the gradient is replaced by the sub-gradient when the function is non-smooth.</p>
+
+<p>Intuitively speaking, strong convexity means that there exists a quadratic lower bound on the growth of the function. This directly implies that a strong convex function is strictly convex since the quadratic lower bound growth is of course strictly grater than the linear growth.</p>
+
+<p>Although the definition in \(\eqref{eq:def}\) is commonly used, it would be quite useful for us to note that there are several equivalent conditions for strong convexity.</p>
+
+<div class="divider"></div>
+
+<h3 id="equivalent-conditions-of-strong-convexity">Equivalent Conditions of Strong Convexity</h3>
+<p>The following proposition gives equivalent conditions for strong convexity. The key insight behind this result and its proof is that we can relate a strongly-convex function (\(e.g., f(x)\)) to another convex function (\(e.g., g(x)\)), which enables us to apply the equivalent conditions for a convex function to obtain the result.</p>
+
+<blockquote>
+  <p><strong>Proposition</strong> <em>The following conditions are all equivalent to the condition that a differentiable function \(f\) is strongly-convex with constant \(\mu &gt; 0\)</em>.
+\(\begin{align}
+		&amp;(i)~f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{\mu}{2}\lVert y-x \rVert^2,~\forall x, y.\\
+		&amp;(ii)~g(x) = f(x)-\frac{\mu}{2}\lVert x \rVert^2~\text{is convex},~\forall x.\\
+		&amp;(iii)~(\nabla f(x) - \nabla f(y))^T(x-y) \ge \mu \lVert x-y\rVert^2,~\forall x, y.\\
+		&amp;(iv)~f(\alpha x+ (1-\alpha) y) \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)\mu}{2}\Vert x-y\rVert^2,~\alpha \in [0,1].\\
+	\end{align}\)</p>
+</blockquote>
+
+<p><em>Proof:</em></p>
+
+<p>\((i) \equiv (ii):\) It follows from the first-order condition for convexity of \(g(x)\), i.e., \(g(x)\) is convex if and only if \(g(y)\ge g(x) + \nabla g(x)^T(y-x),~\forall x,y.\)</p>
+
+<p>\((ii) \equiv (iii):\) It follows from the monotone gradient condition for convexity of \(g(x)\), i.e., \(g(x)\) is convex if and only if \((\nabla g(x) - \nabla g(y))^T(x-y) \ge 0,~\forall x,y.\)</p>
+
+<p>\((ii) \equiv (iv):\) It simply follows from the definition of convexity, i.e., \(g(x)\) is convex if \(g(\alpha x+ (1-\alpha) y) \le \alpha g(x) + (1-\alpha) g(y), ~\forall x,y, \alpha\in [0,1].\) \(\tag*{$\Box$}\)</p>
+
+<p><strong>Note:</strong> The equivalence still holds for non-smooth function with gradient replaced by sub-gradient. For a proof, please refer to Lemma 1 of the <a href="https://arxiv.org/pdf/1803.06573.pdf">note</a>.</p>
+
+<div class="divider"></div>
+
+<h3 id="implications-of-strong-convexity">Implications of Strong Convexity</h3>
+<p>There are also some other conditions that are implied by strong convexity while are not equivalent to strong convexity, which means that these conditions are more general than strong convexity.</p>
+
+<blockquote>
+  <p><strong>Proposition</strong> <em>For a continuously differentiable function \(f\), the following conditions are all implied by strong convexity (SC) condition</em>.
+\(\begin{align}
+		&amp;(a)~\frac{1}{2}\lVert\nabla f(x)\rVert^2\ge \mu (f(x)-f^*),~\forall x.\\
+		&amp;(b)~\lVert\nabla f(x) - \nabla f(y)\rVert \ge \mu \lVert x-y\rVert~\forall x,y.\\
+		&amp;(c)~f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac{1}{2\mu}\lVert\nabla f(y)- \nabla f(x)\rVert^2,~\forall x,y.\\
+		&amp;(d)~(\nabla f(x) - \nabla f(y)^T(x-y) \le \frac{1}{\mu} \lVert\nabla f(x)-\nabla f(y)\rVert^2, ~\forall x,y.\\
+	\end{align}\)</p>
+</blockquote>
+
+<p><strong>Note:</strong> The condition (a) is often called Polyak-Lojasiewicz (PL) inequality which is quite useful for establishing linear convergence for a lot of algorithms.</p>
+
+<p><em>Proof:</em></p>
+
+<p>SC \(\rightarrow\) (a): Taking minimization respect to \(y\) on both sides of \(\eqref{eq:def}\) yields</p>
+
+\[f(x^*) \ge f(x)-\frac{1}{2\mu}||\nabla f(x)||^2\]
+
+<p>Re-arranging it we have the PL-inequality.</p>
+
+<p>SC \(\rightarrow\) (b): Using Cauchy-Schwartz on the equivalent condition (iii) in the last Proposition, we have</p>
+
+\[\lVert\nabla f(x) - \nabla f(y)\rVert \lVert x-y \rVert \ge (\nabla f(x) - \nabla f(y)^T(x-y) \ge \mu \lVert x-y\rVert^2\]
+
+<p>and dividing both sides by \(\lVert x-y \rVert\) (assuming \(x \neq y\)) gives (a) (while (a) clearly holds if \(x = y\)).</p>
+
+<p>SC \(\rightarrow\) (c): Let us consider the function \(\phi_x(z) = f(z) - \nabla f(x)^T z\). It is easy to see that \(\phi_x(z)\) is strongly-convex with the same \(\mu\) since</p>
+
+\[(\nabla \phi_x(z_1) - \nabla \phi_x(z_2)^T(z_1-z_2) = (\nabla f(z_1) - \nabla f(z_2)^T(z_1-z_2) \ge \mu \lVert z_1-z_2 \rVert ^2\]
+
+<p>where we again use the equivalent condition (iii) in the last Proposition for strong convexity.</p>
+
+<p>Then, the condition (c) can be directly obtained by applying the PL-inequality to the strongly-convex function \(\phi_x(z)\) with \(z^* = x\)</p>
+
+\[\begin{align}
+(f(y) - \nabla f(x)^T y) - (f(x) - \nabla f(x)^T x) = \phi_x(y) - \phi_x(x) &amp;\le \frac{1}{2\mu}\nabla ||\phi_x(y)||^2 \\
+&amp;= \frac{1}{2\mu}||\nabla f(y) - \nabla f(x)||^2
+\end{align}\]
+
+<p>SC \(\rightarrow\) (d): Interchanging \(x\) and \(y\) in condition (c) yields,</p>
+
+\[f(x)\le f(y)+\nabla f(y)^T(x-y)+\frac{1}{2\mu}\lVert \nabla f(x)- \nabla f(y)\rVert^2 \tag{2}\label{eq:interchange}\]
+
+<p>Condition (d) is obtained by adding \(\eqref{eq:interchange}\) and condition (c). \(\tag*{$\Box$}\)</p>
+
+<div class="divider"></div>
+
+<h3 id="application">Application</h3>
+
+<p>We have already seen the application of condition (iii) in proving useful results in the last section. In this section, let us look at one simple application of condition (iv) for strong convexity.</p>
+
+<blockquote>
+  <p><strong>Proposition</strong> <em>Let \(h = f + g\) where \(f\) is strongly convex function and \(g\) is a convex function, then \(h\) is strongly convex function</em></p>
+</blockquote>
+
+<p><em>Proof:</em></p>
+
+\[\begin{align}
+	h(\alpha x + (1-\alpha)y) &amp;= f(\alpha x + (1-\alpha)y) + g(\alpha x + (1-\alpha)y)\\
+	&amp; \le \alpha f(x) + (1-\alpha)f(y) - \frac{\mu \alpha (1-\alpha)}{2}||x-y||^2 + g(\alpha x + (1-\alpha)y)\\
+	&amp; \le \alpha h(x) + (1-\alpha) h(y) - \frac{\mu \alpha (1-\alpha)}{2}||x-y||^2 
+\end{align}\]
+
+<p>where the first inequality follows from the fact that \(f\) is strongly convex; the second inequality holds since \(g\) is convex. \(\tag*{$\Box$}\)</p>
+
+<p><strong>Note:</strong> Although the proof is simple, it has its own importance. For example, any L2-regularized problem of the form \(h(x) = f(x)+ \lambda \lVert x \rVert^2\), where \(f\) is convex and \(\lambda &gt;0\), is strongly convex.</p>
+
+<div class="divider"></div>
+
+<h3 id="citation">Citation</h3>
+<p>Recently, I have received a lot of emails from my dear readers that inquire about how to cite the content in my blog. I am quite surprised and also glad that my blog posts are more welcome than expected. Fortunately, I have an arXiv paper that summarizes all the results. Here is the citation form:</p>
+
+<blockquote>
+  <p>Zhou, Xingyu. “On the Fenchel Duality between Strong Convexity and Lipschitz Continuous Gradient.” arXiv preprint arXiv:1803.06573 (2018).</p>
+</blockquote>
+
+<p class="center"><strong>THE END</strong></p>
+
+<div class="divider"></div>
+
+<p>Now, it’s time to take a break by appreciating the masterpiece of Monet.</p>
+
+<p class="center"><img src="http://xingyuzhou.org/blog/assets/post_images/impression-sunrise.jpg" alt="Monet" height="400px" width="500px" /></p>
+
+<p class="center"><strong>Impression Sunrise</strong></p>
+<p class="center"><em>courtesy of www.Claude-Monet.com</em></p>
+
+:ET

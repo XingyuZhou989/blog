@@ -1,0 +1,112 @@
+I"�<p>Last time, we talked about <a href="http://xingyuzhou.org/blog/notes/strong-convexity">strong convexity</a>. Today, let us look at another important concept in convex optimization, named <em>Lipschitz continuous gradient</em> condition, which is essential to ensuring convergence of many gradient decent based algorithms. The post is also mainly based on my course project report.</p>
+
+<p>It is worth noting that there exits a duality (Fenchel duality) between strong convexity and Lipschitz continuous gradient, which implies that once we have a good understanding of one, we may easily understand the other one.</p>
+
+<p><strong>Note:</strong> Indeed, all the results in this post can be easily proved via the same method adopted in the post of strong convexity. This is the beauty of duality!</p>
+
+<p>As usual, let’s us first begin with the definition.</p>
+
+<p>A differentiable function \(f\) is said to have an L-Lipschitz continuous gradient if for some \(L&gt;0\)</p>
+
+\[\lVert \nabla f(x) - \nabla f(y)\rVert \le L \lVert x-y\rVert,~\forall x,y.\]
+
+<p><strong>Note:</strong> The definition doesn’t assume convexity of \(f\).</p>
+
+<p>Now, we will list some other conditions that are related or equivalent to Lipschitz continuous gradient condition.</p>
+
+\[\begin{align}
+	[0]~&amp;\lVert\nabla f(x) - \nabla f(y)\rVert \le L \lVert x-y\rVert,~\forall x,y.\\
+	[1]~&amp;g(x) = \frac{L}{2}x^T x - f(x) \text{ is convex },~\forall x\\
+	[2]~&amp;f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac{L}{2}\lVert y-x\rVert^2,~\forall x,y.\\
+	[3]~&amp;(\nabla f(x) - \nabla f(y)^T(x-y) \le L \rVert x-y\rVert^2, ~\forall x,y.\\
+	[4]~&amp;f(\alpha x+ (1-\alpha) y) \ge \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)L}{2}\lVert x-y\rVert^2,~\forall x,y \text{ and } \alpha \in [0,1]\\
+	[5]~&amp;f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac{1}{2L}\lVert\nabla f(y)-\nabla f(x)\rVert^2,~\forall x,y.\\
+	[6]~&amp;(\nabla f(x) - \nabla f(y)^T(x-y) \ge \frac{1}{L} \lVert \nabla f(x)-\nabla f(y)\rVert^2, ~\forall x,y.\\
+	[7]~&amp;f(\alpha x+ (1-\alpha) y) \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)}{2L}\lVert\nabla f(x)-\nabla f(y)\rVert^2,~\forall x,y \text{ and }\alpha \in [0,1].
+\end{align}\]
+
+<p><strong>Note:</strong> We assume that the domain for \(f\) and \(g\) are both \(\mathbb{R}^n\), and hence convex.</p>
+
+<div class="divider"></div>
+
+<h3 id="relationships-between-conditions">Relationships Between Conditions</h3>
+
+<p>The next proposition gives the relationships between all the conditions mentioned above. If you have already mastered all the tricks in the post of <a href="http://xingyuzhou.org/blog/notes/strong-convexity">strong convexity</a>, you can easily prove all the results by yourself. Try it now!</p>
+
+<blockquote>
+  <p><strong>Proposition</strong> <em>For a function \(f\) with a Lipschitz continuous gradient over \(\mathbb{R}^n\), the following implications hold:</em></p>
+
+\[[5] \equiv [7] \rightarrow [6] \rightarrow [0] \rightarrow [1] \equiv [2] \equiv [3] \equiv [4]\]
+
+  <p>If we further assume that \(f\) is convex, then we have all the conditions \([0]-[7]\) are equivalent.</p>
+</blockquote>
+
+<p><em>Proof:</em> Again, the key idea behind the proof is transformation, i.e., transform a \(f\) with Lipschitz continuous gradient to another convex function \(g\), which enables us to apply the equivalent conditions for convexity.</p>
+
+<p>\([1] \equiv [2]\): It follows from the first-order condition for convexity of \(g(x)\), i.e., \(g(x)\) is convex if and only if \(g(y)\ge g(x) + \nabla g(x)^T(y-x),~\forall x,y.\)</p>
+
+<p>\([1] \equiv [3]\): It follows from the monotone gradient condition for convexity of \(g(x)\), i.e., \(g(x)\) is convex if and only if \((\nabla g(x) - \nabla g(y))^T(x-y) \ge 0,~\forall x,y.\)</p>
+
+<p>\([1] \equiv [4]\): It simply follows from the definition of convexity, i.e., \(g(x)\) is convex if \(g(\alpha x+ (1-\alpha) y) \le \alpha g(x) + (1-\alpha) g(y), ~\forall x,y, \alpha\in [0,1].\)</p>
+
+<p>\([0]\rightarrow[3]\): It simply follows from the Cauchy-Schwartz inequality.</p>
+
+<p>\([6]\rightarrow[0]\): It simply follows from the Cauchy-Schwartz inequality.</p>
+
+<p>\([7]\rightarrow[5]\): Interchanging \(x\) and \(y\) in [7] and re-arranging, we have</p>
+
+\[\begin{align}
+	f(y) \ge f(x) + \frac{f(x+\alpha (y-x)) -f(x)}{\alpha} + \frac{1-\alpha}{2L}\lVert\nabla f(x) - \nabla f(y)\rVert^2
+\end{align}\]
+
+<p>As \(\alpha \downarrow 0\), we get \([5]\).</p>
+
+<p>\([5]\rightarrow[7]\): Let \(z = \alpha x + (1-\alpha) y \in \mathbb{R}^n\), we have</p>
+
+\[f(x)\ge f(z)+\nabla f(z)^T(x-z)+\frac{1}{2L}\lVert \nabla f(x)-\nabla f(z)\rVert^2\]
+
+\[f(y)\ge f(z)+\nabla f(z)^T(y-z)+\frac{1}{2L}||\nabla f(y)-\nabla f(z)||^2\]
+
+<p>Multiplying the first inequality with \(\alpha\) and second inequality with \(1-\alpha\), and adding them together yields</p>
+
+\[\begin{align}
+	f(\alpha x+ (1-\alpha) y) &amp;\le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha}{2L}||\nabla f(x)-\nabla f(z)||^2 - \frac{1-\alpha}{2L}||\nabla f(y)-\nabla f(z)||^2\\
+	&amp; \le \alpha f(x) + (1-\alpha) f(y) - \frac{\alpha (1-\alpha)}{2L}||\nabla f(x)-\nabla f(y)||^2
+\end{align}\]
+
+<p>where the second inequality follows from the inequality \(\alpha \lVert x\rVert^2 + (1-\alpha) \lVert y\rVert^2 \ge \alpha (1-\alpha)\lVert x-y\rVert^2.\)</p>
+
+<p>If \(f\) is convex, we can easily show \([1] \rightarrow [5]\), which implies that all the conditions are equivalent in this case.</p>
+
+<p>\([1]\rightarrow[5]\): Let us consider the function \(\phi_x(z) = f(z) - \nabla f(x)^T z\), which obtain its optimum at \(z^* = x\) as \(f\) is convex. Moreover, we have \(h(z) = \frac{L}{2}z^Tz - \phi_x(z)\) is convex since \([1]\) holds, which implies that</p>
+
+<p>\(\phi_x(z)\le \phi_x(y)+\nabla \phi_x(y)^T(z-y)+\frac{L}{2}\lVert z-y\rVert^2\)
+Taking minimization with respect to \(z\) on both sides, yields,</p>
+
+\[\begin{align}
+	f(y) - f(x) - \nabla f(x) (y-x) &amp;= \phi_x(y) - \phi_x(x)\\
+	&amp; \ge \frac{1}{2L}\lVert \nabla \phi_x(y)\rVert^2\\
+	&amp; = \frac{1}{2L}\lVert \nabla f(y) - \nabla f(x)\rVert^2
+\end{align}\]
+
+<p>Re-arranging gives the result. \(\tag*{$\Box$}\)</p>
+
+<h3 id="citation">Citation</h3>
+<p>Recently, I have received a lot of emails from my dear readers that inquire about how to cite the content in my blog. I am quite surprised and also glad that my blog posts are more welcome than expected. Fortunately, I have an arXiv paper that summarizes all the results. Here is the citation form:</p>
+
+<blockquote>
+  <p>Zhou, Xingyu. “On the Fenchel Duality between Strong Convexity and Lipschitz Continuous Gradient.” arXiv preprint arXiv:1803.06573 (2018).</p>
+</blockquote>
+
+<p class="center"><strong>THE END</strong></p>
+
+<div class="divider"></div>
+
+<p>Now, it’s time to take a break by appreciating the masterpiece of Monet.</p>
+
+<p class="center"><img src="http://xingyuzhou.org/blog/assets/post_images/garden-at-sainte-adresse.jpg" alt="Monet" height="400px" width="500px" /></p>
+
+<p class="center"><strong>The Garden at Sainte-Adresse</strong></p>
+<p class="center"><em>courtesy of www.Claude-Monet.com</em></p>
+
+:ET

@@ -1,0 +1,2 @@
+I"„<p>Last time, we talked about <a href="http://xingyuzhou.org/blog/notes/strong-convexity">strong convexity</a>. Today, let us look at another important concept in convex optimization, named <em>Lipschitz continuous gradient</em> condition, which is essential to ensuring convergence of many gradient decent based algorithms. The post is also mainly based on my course project report.</p>
+:ET
