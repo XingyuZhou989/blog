@@ -9,7 +9,7 @@ This is my new blog, and the previous [CSDN blog](http://blog.csdn.net/mike19026
 
 I am Xingyu Zhou (周星宇), an assistant professor of ECE at Wayne State University, USA.
 
-This is my [academic page](http://xingyuzhou.org).
+Here is my [academic page](http://xingyuzhou.org).
 
 I hope that I would have time to update regularly here, either in English or Chinese.
 
