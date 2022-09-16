@@ -3,11 +3,11 @@ comments: true
 title: Fenchel duality
 updated: 2017-12-05 23:00
 ---
-Last time, we have mentioned that there exists a duality between strong convexity and Lipschitz continuous gradient. In this post, we will explore this duality, which is often called _Fenchel duality_. 
+Last time, we have mentioned that there exists a duality between [strong convexity](http://xingyuzhou.org/blog/notes/strong-convexity) and [Lipschitz continuous gradient](http://xingyuzhou.org/blog/notes/Lipschitz-gradient). In this post, we will explore this duality, which is often called _Fenchel duality_. 
 
 This duality actually relates to the convex conjugate of a function. Thus, to begin with, we will first introduce the definition of conjugate function and some useful results.
 
-The conjugate of a function $$f$$ is 
+The conjugate of a function $$f$$ is
 
 $$		
 	f^*(s) = \sup_{x \in \text{dom} f} (s^T x - f(x))
@@ -24,7 +24,7 @@ $$
 	[3]~& x \in \partial f^*(s)
 \end{align*}
 $$
-> 
+>
 Then we have the following results:
 >
 (i) For a general $$f$$, we have [1] $$\iff$$ [2] $$\implies$$ [3].
@@ -39,15 +39,15 @@ _Proof:_ Please refer to my notes [here](http://xingyuzhou.org/talks/Fenchel_dua
 
 Now, we are well prepared to prove the following theorem. The proof is quite simple once you have a good understanding of my previous posts on strong convexity and Lipschitz continuous gradient.
 
->**Theorem** 
+>**Theorem**
 >
 (i) _If $$f$$ is closed and strong convex with parameter $$\mu$$, then $$f^*$$ has a Lipschitz continuous gradient with parameter $$\frac{1}{\mu}$$_.
 >
 (ii) _If $$f$$ is convex and has a Lipschitz continuous gradient with parameter $$L$$, then $$f^*$$ is strong convex with parameter $$\frac{1}{L}$$_.
 
-_Proof:_ 
+_Proof:_
 
-(1): By implication of strong convexity shown in the previous post on [strong convexity](http://xingyuzhou.org/blog/notes/strong-convexity), we have 
+(1): By implication of strong convexity shown in the previous post on [strong convexity](http://xingyuzhou.org/blog/notes/strong-convexity), we have
 
 $$
 \begin{align*}
@@ -57,7 +57,7 @@ $$
 
 Based on the previous lemma, we have
 
-$$	
+$$
 \begin{align*}
 		\lVert s_x - s_y\rVert \ge \mu\lVert \nabla f^*(s_x)- \nabla f^*(s_y) \rVert
 \end{align*}
@@ -66,7 +66,7 @@ $$
 Hence, $$f^*$$ has a Lipschitz continuous gradient with $$\frac{1}{\mu}$$.
 
 
-(2): By implication of Lipschitz continuous gradient for convex $$f$$ shown in the post of [Lipschitz continuous gradient](http://xingyuzhou.org/blog/notes/Lipschitz-gradient), we have 
+(2): By implication of Lipschitz continuous gradient for convex $$f$$ shown in the post of [Lipschitz continuous gradient](http://xingyuzhou.org/blog/notes/Lipschitz-gradient), we have
 
 $$
 \begin{align*}
@@ -74,9 +74,9 @@ $$
 \end{align*}
 $$
 
-which implies based on the previous lemma 
+which implies based on the previous lemma
 
-$$	
+$$
 \begin{align*}
 		(s_x - s_y)^T (x-y) \ge \frac{1}{L} \lVert s_x - s_y \rVert^2~\forall x \in \partial f^*(s_x), y \in \partial f^*(s_y)
 \end{align*}
@@ -92,11 +92,11 @@ Hence, $$f^*$$ is strongly convex with parameter $$\frac{1}{L}$$ according to th
 
 <!-- Last time, we talked about [strong convexity](http://xingyuzhou.org/blog/notes/strong-convexity). Today, let us look at another important concept in convex optimization, named _Lipschitz continuous gradient_ condition, which is essential to ensuring convergence of many gradient decent based algorithms. The post is also mainly based on my course project report.  
 
-It is worth noting that there exits a duality (Fenchel duality) between strong convexity and Lipschitz continuous gradient, which implies that once we have a good understanding of one, we may easily understand the other one. 
+It is worth noting that there exits a duality (Fenchel duality) between strong convexity and Lipschitz continuous gradient, which implies that once we have a good understanding of one, we may easily understand the other one.
 
 **Note:** Indeed, all the results in this post can be easily proved via the same method adopted in the post of strong convexity. This is the beauty of duality!
 
-As usual, let's us first begin with the definition. 
+As usual, let's us first begin with the definition.
 
 A differentiable function $$f$$ is said to have an L-Lipschitz continuous gradient if for some $$L>0$$
 
@@ -104,9 +104,9 @@ $$
 \lVert \nabla f(x) - \nabla f(y)\rVert \le L \lVert x-y\rVert,~\forall x,y.
 $$
 
-**Note:** The definition doesn't assume convexity of $$f$$. 
+**Note:** The definition doesn't assume convexity of $$f$$.
 
-Now, we will list some other conditions that are related or equivalent to Lipschitz continuous gradient condition. 
+Now, we will list some other conditions that are related or equivalent to Lipschitz continuous gradient condition.
 
 $$
 \begin{align}
@@ -149,7 +149,7 @@ $$[0]\rightarrow[3]$$: It simply follows from the Cauchy-Schwartz inequality.
 
 $$[6]\rightarrow[0]$$: It simply follows from the Cauchy-Schwartz inequality.
 
-$$[7]\rightarrow[5]$$: Interchanging $$x$$ and $$y$$ in [7] and re-arranging, we have 
+$$[7]\rightarrow[5]$$: Interchanging $$x$$ and $$y$$ in [7] and re-arranging, we have
 
 $$
 \begin{align}
@@ -159,7 +159,7 @@ $$
 
 As $$\alpha \downarrow 0$$, we get $$[5]$$.
 
-$$[5]\rightarrow[7]$$: Let $$z = \alpha x + (1-\alpha) y \in \mathbb{R}^n$$, we have 
+$$[5]\rightarrow[7]$$: Let $$z = \alpha x + (1-\alpha) y \in \mathbb{R}^n$$, we have
 
 $$
 	f(x)\ge f(z)+\nabla f(z)^T(x-z)+\frac{1}{2L}\lVert \nabla f(x)-\nabla f(z)\rVert^2
@@ -182,7 +182,7 @@ where the second inequality follows from the inequality $$\alpha \lVert x\rVert^
 
 If $$f$$ is convex, we can easily show $$[1] \rightarrow [5]$$, which implies that all the conditions are equivalent in this case.
 
-$$[1]\rightarrow[5]$$: Let us consider the function $$\phi_x(z) = f(z) - \nabla f(x)^T z$$, which obtain its optimum at $$z^* = x$$ as $$f$$ is convex. Moreover, we have $$h(z) = \frac{L}{2}z^Tz - \phi_x(z)$$ is convex since $$[1]$$ holds, which implies that 
+$$[1]\rightarrow[5]$$: Let us consider the function $$\phi_x(z) = f(z) - \nabla f(x)^T z$$, which obtain its optimum at $$z^* = x$$ as $$f$$ is convex. Moreover, we have $$h(z) = \frac{L}{2}z^Tz - \phi_x(z)$$ is convex since $$[1]$$ holds, which implies that
 
 $$
 \phi_x(z)\le \phi_x(y)+\nabla \phi_x(y)^T(z-y)+\frac{L}{2}\lVert z-y\rVert^2
@@ -200,7 +200,7 @@ $$
 Re-arranging gives the result. $$\tag*{$\Box$}$$ -->
 
 ### Citation
-Recently, I have received a lot of emails from my dear readers that inquire about how to cite the content in my blog. I am quite surprised and also glad that my blog posts are more welcome than expected. Fortunately, I have an arXiv paper that summarizes all the results. Here is the citation form: 
+Recently, I have received a lot of emails from my dear readers that inquire about how to cite the content in my blog. I am quite surprised and also glad that my blog posts are more welcome than expected. Fortunately, I have an arXiv paper that summarizes all the results. Here is the citation form:
 
 > Zhou, Xingyu. "On the Fenchel Duality between Strong Convexity and Lipschitz Continuous Gradient." arXiv preprint arXiv:1803.06573 (2018).
 
@@ -220,6 +220,3 @@ Now, it's time to take a break by appreciating the masterpiece of Monet.
 {: .center}
 _courtesy of www.Claude-Monet.com_
 {: .center}
-
-
-
