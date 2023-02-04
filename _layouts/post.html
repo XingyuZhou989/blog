@@ -6,6 +6,7 @@ layout: default
 
 	<div class="center">
 		<h1>{{ page.title }}</h1>
+		<h2>{{ page.subtitle }}</h2>
 		<time>{{ page.date | date: '%B %-d, %Y' }}</time>
 	</div>
 
@@ -27,4 +28,3 @@ layout: default
   {% endif %}
   {% include disqus.html %}
 </div>
-
