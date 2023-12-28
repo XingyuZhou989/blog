@@ -1,0 +1,76 @@
+I"�\[\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bZ}{\mathbf{Z}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\cN}{\mathcal{N}}\]
+
+<p>In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix matrix factorization mechanism.</p>
+
+<div class="divider"></div>
+
+<p>As motivated by Q1 in the end of the <a href="https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)">previous post</a>
+, we would like to explore even better mechanisms than tree-based algorithm for the task of releasing private prefix sum in this post. The key idea here is to view the tree-based algorithm (as well as the other two simple noise-adding mechanisms mentioned in the beginning of <a href="https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)">previous post</a>) as special cases of a more general framework – matrix factorization mechanism <a href="https://arxiv.org/pdf/2202.08312.pdf">[DMRSG22]</a>. In particular, one key contribution of <a href="https://arxiv.org/pdf/2202.08312.pdf">[DMRSG22]</a> is to explicitly consider the stream nature and privacy under <em>adaptive</em> inputs, which is in contrast to previous offline settings (e.g.,<a href="https://people.cs.umass.edu/~miklau/assets/pubs/dp/Li15matrix.pdf">[LMHMR15]</a>, <a href="https://arxiv.org/pdf/1911.08339.pdf">[ENU20]</a>). Following <a href="https://arxiv.org/pdf/2202.08312.pdf">[DMRSG22]</a>, let us have a quick understanding of the matrix factorization mechanism, with a focus on the task of computing prefix sum. Note that it can be easily generalized to general tasks (with replacement of \(\bA\) below).</p>
+
+<p>The prefix sum over a sequence of gradients \(\bG = [g_1,\ldots, g_T]^{\top} \in \Real^{T \times d}\) can be represented as \(\bA \bG\) where \(\bA \in \Real^{T \times T}\) is the all-ones lower-triangular matrix. To privatize \(\bA \bG\), the matrix factorization approach first factorizes \(\bA = \bB \bC\) and releases \(\bB (\bC \bG + \bZ)\). The high-level intuition behind this is to adjust the space where one adds noise (hence \(\bC\) is often called the <em>encoder</em>) and then reconstruct the required output using the <em>decoder</em> matrix \(\bB\). The hope here is to achieve a better privacy and utility (e.g., total noise in noisy prefix sum) trade-off.</p>
+
+<div class="divider"></div>
+
+<p>Before searching better mechanisms, let us first cast the tree-based algorithm and the other two mechanism to the matrix factorization framework with different choices of \((\bB,\bC)\). From this, we can see that indeed a careful choice of \((\bB,\bC)\) can improve the performance.</p>
+
+<p><strong>Example 1 (Simple I mechanism as matrix factorization)</strong> Simple I mechanism in <a href="https://eprint.iacr.org/2010/076.pdf">[CSS11]</a> simply adds noise to each non-private prefix sum. This corresponds to \(\bB = \bI\) and \(\bC = \bA\). For privacy, the sensitivity is on the order of \(\sqrt{T}\) in \(\ell_2\) norm as changing the first element \(g_1\) will impact all \(T\) outputs in the space of \(\bC \bG = \bA \bG\). Hence, each element in \(\bZ\) is \(\cN(0,\sigma^2)\) with \(\sigma^2 \approx O_{\delta}\left(\frac{T}{\epsilon^2}\right)\) for \((\epsilon,\delta)\)-DP.  For utility, each noisy prefix sum is simply the non-private prefix sum plus the \(t\)-th row vector \(z_t\) in \(\bZ\). Putting the two together, we have the total noise in the noisy prefix sum is \(O_{\delta}(T/\epsilon^2)\) for \((\epsilon,\delta)\)-DP.</p>
+
+<p><strong>Example 2 (Simple II mechanism as matrix factorization)</strong> Simple II mechanism in <a href="https://eprint.iacr.org/2010/076.pdf">[CSS11]</a> simply adds noise to each input data point and then accumulates all noisy data points for noisy prefix sum. This corresponds to \(\bB = \bA\) and \(\bC = \bI\). For privacy, the sensitivity is on the order of \(O(1)\) in \(\ell_2\) norm as changing any element \(g_t\) will at most change \(O(1)\) in the output.  Hence, each element in \(\bZ\) is \(\cN(0,\sigma^2)\) with \(\sigma^2 \approx O_{\delta}\left(\frac{1}{\epsilon^2}\right)\) for \((\epsilon,\delta)\)-DP.  For utility, each noisy prefix sum needs to accumulate all previous noisy data points. Putting the two together, we have the total noise in the noisy prefix sum is again \(O_{\delta}(T/\epsilon^2)\) for \((\epsilon,\delta)\)-DP, the same as above.</p>
+
+<p><strong>Example 3 (Tree-based algorithm as matrix factorization)</strong>    The tree-based algorithm adds noise to the tree nodes in the complete binary tree as shown in Fig.1 of the <a href="https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)">previous post</a> and then accumulates the corresponding noisy tree nodes for the final noisy prefix sum. This can also be viewed as a proper choice of \(\bB\) and \(\bC\). Let us first see a concrete toy example for the simple case when \(T = 4\) and then give results for the general case later. In particular, for \(T = 4\), we have</p>
+
+\[\bC = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 1
+\end{pmatrix}, \quad
+\bB = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}.\]
+
+<p>To see it, as shown in the left sub-tree of Fig.1 of the <a href="https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)">previous post</a>, the encoder matrix \(\bC \in \Real^{7 \times 4}\) is responsible for computing the \(7\) tree nodes (partial sums) using \(4\) input data points. On the other hand, the decoder \(\bB \in \Real^{4 \times 7}\) is responsible for computing the noisy prefix sum using the \(7\) noisy tree nodes. One can check \(\bA = \bB \bC\). For the general case, by the recursive nature of a binary tree, it is very natural to conjecture that \(\bC\) would enjoy some recursive formula as shown in~\cite{denisov2022improved}. Indeed, if one defines the following recursive formula</p>
+
+\[\bH_1 = \begin{pmatrix}
+1
+\end{pmatrix}, \quad
+\bH_{k+1} = \begin{pmatrix}
+\bH_k &amp; \mathbf{0}  \\
+0 &amp; \bH_k \\
+\mathbf{1} &amp; \mathbf{1}
+\end{pmatrix},\]
+
+<p>then, for \(T =2^{k-1}\), \(k \ge 1\), then \(\bC = \bH_k\) and \(\bB\) is a \(\{0,1\}\)-valued matrix such that \(\bB \bC = \bA\) which can be found using tree structure (or bit representation of \(t\)) or using linear programming. As discussed in Fig.1 of the <a href="https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)">previous post</a>, the total noise in noisy prefix sum under tree-based algorithm is only \(\tilde{O}_{\delta}(1/\epsilon^2)\).</p>
+
+<p><em>Remark 1:</em> Note that</p>
+
+<div class="divider"></div>
+
+<p>Thus, we have seen that there indeed exists the possibility of optimizing the choice of \((\bB,\bC)\) for a better privacy-utility trade-off in terms of total noise. In the next post, we will come up with a loss objective for the maximal total error in prefix sum so that we can use optimization to find the best \((\bB,\bC)\). But, we should also keep in mind, whether or not minimizing the maximal total noise in prefix sum leads to the tighter final performance, as hinted in Q2 of the <a href="https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)">previous post</a>, which will be our later topic.</p>
+
+<p class="center"><strong>THE END</strong></p>
+
+<div class="divider"></div>
+
+<p>Now, it’s time to take a break by appreciating the masterpiece of Monet.</p>
+
+<p class="center"><img src="../assets/post_images/water-lilies.jpg" alt="Monet" height="400px" width="500px" /></p>
+
+<p class="center"><strong>Water Lilies, Evening Effect</strong></p>
+<p class="center"><em>courtesy of https://www.wikiart.org/</em></p>
+:ET

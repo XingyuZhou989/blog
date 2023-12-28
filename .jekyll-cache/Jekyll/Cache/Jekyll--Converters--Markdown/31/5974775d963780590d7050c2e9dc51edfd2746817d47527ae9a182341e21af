@@ -1,0 +1,70 @@
+I"&\[\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bZ}{\mathbf{Z}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\cN}{\mathcal{N}}\]
+
+<p>In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix matrix factorization mechanism.</p>
+
+<div class="divider"></div>
+
+<p>As motivated by Q1 in the end of the <a href="https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)">previous post</a>
+, we would like to explore even better mechanisms than tree-based algorithm for the task of releasing private prefix sum in this post. The key idea here is to view the tree-based algorithm (as well as the other two simple noise-adding mechanisms mentioned in the beginning of <a href="https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)">previous post</a>) as special cases of a more general framework – matrix factorization mechanism <a href="https://arxiv.org/pdf/2202.08312.pdf">[DMRSG22]</a>. In particular, one key contribution of <a href="https://arxiv.org/pdf/2202.08312.pdf">[DMRSG22]</a> is to explicitly consider the stream nature and privacy under <em>adaptive</em> inputs, which is in contrast to previous offline settings (e.g.,<a href="https://people.cs.umass.edu/~miklau/assets/pubs/dp/Li15matrix.pdf">[LMHMR15]</a>, <a href="https://arxiv.org/pdf/1911.08339.pdf">[ENU20]</a>). Following <a href="https://arxiv.org/pdf/2202.08312.pdf">[DMRSG22]</a>, let us have a quick understanding of the matrix factorization mechanism, with a focus on the task of computing prefix sum. Note that it can be easily generalized to general tasks (with replacement of \(\bA\) below).</p>
+
+<p>The prefix sum over a sequence of gradients \(\bG = [g_1,\ldots, g_T]^{\top} \in \Real^{T \times d}\) can be represented as \(\bA \bG\) where \(\bA \in \Real^{T \times T}\) is the all-ones lower-triangular matrix. To privatize \(\bA \bG\), the matrix factorization approach first factorizes \(\bA = \bB \bC\) and releases \(\bB (\bC \bG + \bZ)\). The high-level intuition behind this is to adjust the space where one adds noise (hence \(\bC\) is often called the <em>encoder</em>) and then reconstruct the required output using the <em>decoder</em> matrix \(\bB\). The hope here is to achieve a better privacy and utility (e.g., total noise in noisy prefix sum) trade-off.</p>
+
+<div class="divider"></div>
+
+<p>Before searching better mechanisms, let us first cast the tree-based algorithm and the other two mechanism to the matrix factorization framework with different choices of \((\bB,\bC)\). From this, we can see that indeed a careful choice of \((\bB,\bC)\) can improve the performance.</p>
+
+<p><strong>Example 1 (Simple I mechanism as matrix factorization)</strong> Simple I mechanism in <a href="https://eprint.iacr.org/2010/076.pdf">[CSS11]</a> simply adds noise to each non-private prefix sum. This corresponds to \(\bB = \bI\) and \(\bC = \bA\). For privacy, the sensitivity is on the order of \(\sqrt{T}\) in \(\ell_2\) norm as changing the first element \(g_1\) will impact all \(T\) outputs in the space of \(\bC \bG = \bA \bG\). Hence, each element in \(\bZ\) is \(\cN(0,\sigma^2)\) with \(\sigma^2 \approx O_{\delta}\left(\frac{T}{\epsilon^2}\right)\) for \((\epsilon,\delta)\)-DP.  For utility, each noisy prefix sum is simply the non-private prefix sum plus the \(t\)-th row vector \(z_t\) in \(\bZ\). Putting the two together, we have the total noise in the noisy prefix sum is \(O_{\delta}(T/\epsilon^2)\) for \((\epsilon,\delta)\)-DP.</p>
+
+<p><strong>Example 2 (Simple II mechanism as matrix factorization)</strong> Simple II mechanism in <a href="https://eprint.iacr.org/2010/076.pdf">[CSS11]</a> simply adds noise to each input data point and then accumulates all noisy data points for noisy prefix sum. This corresponds to \(\bB = \bA\) and \(\bC = \bI\). For privacy, the sensitivity is on the order of \(O(1)\) in \(\ell_2\) norm as changing any element \(g_t\) will at most change \(O(1)\) in the output.  Hence, each element in \(\bZ\) is \(\cN(0,\sigma^2)\) with \(\sigma^2 \approx O_{\delta}\left(\frac{1}{\epsilon^2}\right)\) for \((\epsilon,\delta)\)-DP.  For utility, each noisy prefix sum needs to accumulate all previous noisy data points. Putting the two together, we have the total noise in the noisy prefix sum is again \(O_{\delta}(T/\epsilon^2)\) for \((\epsilon,\delta)\)-DP, the same as above.</p>
+
+<div class="divider"></div>
+
+<p>DP-FTRL essentially leverages the idea of tree-based algorithm to achieve a similar or better privacy-utility trade-off than DP-SGD, without requiring the use of privacy amplification by subsampling or shuffling. One utility metric considered in <a href="https://arxiv.org/abs/1405.7085">[KMSTTX21]</a> is online (average) regret defined below.</p>
+
+<p><a id="eq1"></a>
+\(\mathcal{R}(T) = \frac{1}{T} \cdot \left(\sum_{t}^T f_t(x_t) - f_t(x^*)\right), \tag{1}\)
+where \(f_t(x) = \ell (x; \xi_t)\) and \(\ell(x;\xi_t)\) is the loss of model parameter \(x\) under sample \(\xi_t\) and a fixed (convex) loss function \(\ell\). Here, \(x^*\) is any reference parameter.  As in standard online learning, \(f_t\) can be adversarially chosen (hence \(\xi_t\) can be arbitrarily chosen without a distribution assumption).</p>
+
+<p>Let us summarize the key utility (regret) result in <a href="https://arxiv.org/abs/1405.7085">[KMSTTX21]</a> (cf. Theorem C.1) under \((\epsilon,\delta)\)-DP. At a high level, one can represent the high-probability regret in <a href="#eq1">(1)</a> under DP-FTRL as follows (assume Lipschitz constant of \(f_t\) is \(L=1\), \(x_1 = 0\) and \(\lVert x \rVert_2 \leq D^2\)).</p>
+
+<p><a id="eq2"></a>
+\(\mathcal{R}_{\text{DP-FTRL}}(T) \le O\left( \frac{1+ \text{maximal error in prefix sum}}{\lambda} + \frac{\lambda D^2}{T}\right), \tag{2}\)
+where \(\lambda\) is the coefficient of the regularizer in FTRL (which is related to the inverse of the learning rate in OMD or SGD). For non-private case (where the error term is zero), choosing \(\lambda = {\sqrt{T}}/{D}\), yields the standard non-private (average) regret of \(D/\sqrt{T}\). For the DP case, it only needs to compute the error in prefix sum. Let \(n_t \in \mathbb{R}^d\) be the difference between the noisy prefix sum at time \(t\) and the non-private true prefix sum at time \(t\). The maximal error in prefix sum is given by \(\max_{t\in T} \lVert n_t \rVert_2\). Then, as explained in <a href="#tree">Fig. 1</a>, \(\lVert n_t \rVert_2 \approx \sqrt{d} \cdot 1/\epsilon\), for all \(t \in [T]\) with high probability. Plugging in \(\sqrt{d} \cdot 1/\epsilon\) as the maximal error into <a href="#eq2">(2)</a> and choosing \(\lambda = \max\left\{\frac{\sqrt{T}}{D}, \frac{d^{1/4}\sqrt{T/\epsilon}}{D}\right\}\) , one can obtain the final high-probability regret of DP-FTRL with tree-based algorithm for prefix sum as</p>
+
+<p><a id="eq3"></a>
+\(\mathcal{R}_{\text{DP-FTRL}}(T) \le O\left( D\cdot \left(\frac{1}{\sqrt{T}} + \frac{d^{1/4}}{\sqrt{T \epsilon}}\right)\right). \tag{3}\)</p>
+
+<p><em>Remark 1:</em> From the online regret guarantee, one can follow the standard online-to-batch approach to obtain the bound on population excess risk when \(\xi_t\) is sampled from a fixed distribution. The high-probability regret bound (i.e., Theorem C.1 in <a href="https://arxiv.org/abs/1405.7085">[KMSTTX21]</a>) leads to high-probability population excess risk bound while an expected regret bound leads to an expected excess risk bound. For this reason, some work only plugs in expected error in prefix sum for only expected population excess risk bound.</p>
+
+<p><em>Remark 2:</em>   As shown in <a href="https://arxiv.org/abs/1405.7085">[KMSTTX21]</a>, the total added noise in DP-FTRL is similar to the one in DP-SGD with amplification. For a quick high-level intuition, consider the case \(T = n\) (\(n\) is the number of samples) for both DP-FTRL and DP-SGD with amplification (either by subsampling or shuffling). The total amount of noise for DP-FTRL is \(\tilde{O}_{\delta}(1/\epsilon^2)\) for each coordinate \(i\in [d]\) as already mentioned above. For a constant learning rate of SGD, the final iterate is simply the sum of true gradients plus \(T=n\) added noise. Due to amplification, for \((\epsilon,\delta)\)-DP, the variance of each step’s noise only needs to be \(\tilde{O}_{\delta}(1/(\epsilon^2 n))\) (due to the standard \(1/\sqrt{n}\) amplification). As a result, the total noise in DP-SGD is \(n\cdot \tilde{O}_{\delta}(1/(\epsilon^2 n))\), which is the same as the one in DP-FTRL.</p>
+
+<h3 id="a-peek-into-follow-up-posts">A peek into follow-up posts…</h3>
+
+<p>At this moment, we may naturally ask the following questions:</p>
+
+<p><strong>Q1.</strong> Can we find even better methods (in terms of the maximal error) than the tree-based algorithm for private prefix sum?</p>
+
+<p><strong>Q2.</strong> Is minimizing the maximal error in prefix sum the right metric for utility performance?</p>
+
+<p>Q1 above will lead us to the main topic for the next post in this series – matrix factorization mechanism. Q2 will motivate us to question how tightness of the bound in <a href="#eq2">(2)</a>, which will be discussed later.</p>
+
+<p class="center"><strong>THE END</strong></p>
+
+<div class="divider"></div>
+
+<p>Now, it’s time to take a break by appreciating the masterpiece of Monet.</p>
+
+<p class="center"><img src="../assets/post_images/water-lilies.jpg" alt="Monet" height="400px" width="500px" /></p>
+
+<p class="center"><strong>Water Lilies, Evening Effect</strong></p>
+<p class="center"><em>courtesy of https://www.wikiart.org/</em></p>
+:ET
