@@ -1,0 +1,34 @@
+I"�
+<p>In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix matrix factorization mechanism</p>
+
+<div class="divider"></div>
+
+<h2 id="background">Background</h2>
+
+<p>Building upon the classic online learning algorithm FTRL, DP-FTRL <a href="https://arxiv.org/abs/1405.7085">[KMSTTX21]</a> is the private version, proposed to get rid of subsampling and shuffling in DP-SGD while achieving similar or better privacy-utility trade-off. The key idea is simple – the regret/utility analysis in standard FTRL only relies on the prefix sum of gradients and hence it suffices to privatize each prefix sum for privacy. Not surprisingly, this idea has been explored before in private online learning, e.g., <a href="https://arxiv.org/abs/1109.0105">[JKT12]</a>, <a href="https://proceedings.neurips.cc/paper_files/paper/2013/file/c850371fda6892fbfd1c5a5b457e5777-Paper.pdf">[GS13]</a>, <a href="https://arxiv.org/pdf/1701.07953.pdf">[AS17]</a></p>
+
+<div id="image1">
+    <img src="../assets/post_images/tree.jpg" alt="algo" />
+    <p><em>Fig 1:</em> Illustration of tree-based algorithm.</p>
+</div>
+
+<p>~\cite{jain2012differentially,guha2013nearly, agarwal2017price}. One popular way to privatize prefix sum is the so-called tree-based algorithm~\cite{chan2011private,dwork2010differential} and its variance improved version by\citet{honaker2015efficient}. Here is a quick illustration, see Fig.~\ref{fig:tree}. Given a stream of gradients $g_1, g_2,\ldots, g_T \in \Real^d$ with bounded $\ell_2$ norm, instead of adding noise to each gradient or to each prefix sum, the tree-based algorithm adds noise to each partial sum. As we will see later, these three different ways of adding noise correspond to three different factorization methods (i.e., encoder and decoder). The key benefit of adding noise to partial nodes is a good balance between sensitivity and total added noise (which is also the key aspect in matrix factorization). <a href="#image1">See the algorithm image</a></p>
+
+<p><a id="eq1"></a>
+\(\mathcal{R}(T) = \frac{1}{T} \cdot \left(\sum_{t}^T f_t(x_t) - f_t(x^*)\right) \tag{1}\)</p>
+
+<p><a href="#eq1">See Equation (1)</a></p>
+
+\[\mathcal{R}(T) = \frac{1}{T} \cdot \left(\sum_{t}^T f_t(x_t) - f_t(x^*)\right) \tag{1}\]
+
+<p class="center"><strong>THE END</strong></p>
+
+<div class="divider"></div>
+
+<p>Now, it’s time to take a break by appreciating the masterpiece of Monet.</p>
+
+<p class="center"><img src="../assets/post_images/cliff.jpg" alt="Monet" height="400px" width="500px" /></p>
+
+<p class="center"><strong>Cliff Walk at Pourville</strong></p>
+<p class="center"><em>courtesy of www.Claude-Monet.com</em></p>
+:ET
