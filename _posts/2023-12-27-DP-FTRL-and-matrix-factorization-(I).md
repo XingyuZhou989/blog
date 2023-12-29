@@ -52,7 +52,7 @@ At this moment, we may naturally ask the following questions:
 
 **Q2.** Is minimizing the maximal error in prefix sum the right metric for utility performance?
 
-Q1 above will lead us to the main topic for the next post in this series -- matrix factorization mechanism. Q2 will motivate us to question how tightness of the bound in [(1.2)](#eq2), which will be discussed later.
+Q1 above will lead us to the main topic for the next post in this series -- matrix factorization mechanism. Q2 will motivate us to question the tightness of the bound in [(1.2)](#eq2), which will be discussed later.
 
 **THE END**
 {: .center}
