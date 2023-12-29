@@ -27,7 +27,7 @@ The task of online releasing prefix sum over a sequence of gradients $$\bG = [g_
 
 <div class="divider"></div>
 
-Before searching better mechanisms, let us first cast the tree-based algorithm and the other two mechanism to the matrix factorization framework with different choices of $$(\bB,\bC)$$. From this, we can see that indeed a careful choice of $$(\bB,\bC)$$ can improve the performance.
+Before searching for better mechanisms, let us first cast the tree-based algorithm and the other two mechanism to the matrix factorization framework with different choices of $$(\bB,\bC)$$. From this, we can see that indeed a careful choice of $$(\bB,\bC)$$ can improve the performance.
 
 **Example 1 (Simple I mechanism as matrix factorization)** Simple I mechanism in [[CSS11]](https://eprint.iacr.org/2010/076.pdf) simply adds noise to each non-private prefix sum. This corresponds to $$\bB = \bI$$ and $$\bC = \bA$$. For privacy, the sensitivity is on the order of $$\sqrt{T}$$ in $$\ell_2$$ norm as changing the first element $$g_1$$ will impact all $$T$$ outputs in the space of $$\bC \bG = \bA \bG$$. Hence, each element in $$\bZ$$ is $$\cN(0,\sigma^2)$$ with $$\sigma^2 \approx O_{\delta}\left(\frac{T}{\epsilon^2}\right)$$ for $$(\epsilon,\delta)$$-DP.  For utility, each noisy prefix sum is simply the non-private prefix sum plus the $$t$$-th row vector $$z_t$$ in $$\bZ$$. Putting the two together, we have the total noise in the noisy prefix sum is $$O_{\delta}(T/\epsilon^2)$$ for $$(\epsilon,\delta)$$-DP.
 
