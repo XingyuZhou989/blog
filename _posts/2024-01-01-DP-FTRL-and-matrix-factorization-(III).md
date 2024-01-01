@@ -60,7 +60,7 @@ $$
     \text{Max-Error}(\bB,\bC) \le  \max_{i \in [T]} O\left(\sigma_{\epsilon,\delta} \cdot \max_{j \in [T]} \norm{\bC_{[:j]}}_2 \cdot \sqrt{d} \cdot \norm{\bB_{[i,:]}}_2\right).\tag{3.2}
 $$
 
-*Remark 1:* From the above bound, one can now see that a good choice of $$(\bB,\bC)$$ such that $$\bA = \bB \bC$$ is the one that minimizes the norm of columns in $$\bC$$ and the norm of rows in $$\bB$$, simultaneously. Moreover, for any factorization, one can simply plug the bound in [(3.2)](#eq:max-error-final) into [(1.2)](https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)#eq2) to obtain the performance of DP-FTRL with the corresponding mechanism instead of the tree-based algorithm.
+*Remark 3.1:* From the above bound, one can now see that a good choice of $$(\bB,\bC)$$ such that $$\bA = \bB \bC$$ is the one that minimizes the norm of columns in $$\bC$$ and the norm of rows in $$\bB$$, simultaneously. Moreover, for any factorization, one can simply plug the bound in [(3.2)](#eq:max-error-final) into [(1.2)](https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)#eq2) to obtain the performance of DP-FTRL with the corresponding mechanism instead of the tree-based algorithm.
 
 <div class="divider"></div>
 
@@ -98,7 +98,7 @@ $$
 This problem is well-studied and can be solved using numerical
 optimization algorithms (e.g.,[[YYZH16]](https://arxiv.org/pdf/1602.04302.pdf), [[MMHM18]](https://arxiv.org/pdf/1808.03537.pdf)).
 
-*Remark 3.1:* One may wonder if we can get a high probability bound on $$\norm{\bB\bZ}_F$$. It turns out that with some use of concentration inequality, one can get it done. One straightforward way is to apply the (high-dimensional) Hanson-Wright inequality (since $$\bZ$$ is a matrix rather than vector), see Exercise 6.2.7 in [[Ver18]](https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-book.pdf).
+*Remark 3.2:* One may wonder if we can get a high probability bound on $$\norm{\bB\bZ}_F$$. It turns out that with some use of concentration inequality, one can get it done. One straightforward way is to apply the (high-dimensional) Hanson-Wright inequality (since $$\bZ$$ is a matrix rather than vector), see Exercise 6.2.7 in [[Ver18]](https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-book.pdf).
 
 <div class="divider"></div>
 
