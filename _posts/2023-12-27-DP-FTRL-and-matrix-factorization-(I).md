@@ -25,7 +25,7 @@ $$
 $$
 where $$f_t(x) = \ell (x; \xi_t)$$ and $$\ell(x;\xi_t)$$ is the loss of model parameter $$x$$ under sample $$\xi_t$$ and a fixed (convex) loss function $$\ell$$. Here, $$x^*$$ is any reference parameter.  As in standard online learning, $$f_t$$ can be adversarially chosen (hence $$\xi_t$$ can be arbitrarily chosen without a distribution assumption).
 
-Let us summarize the key utility (regret) result in [[KMSTTX21]](https://arxiv.org/abs/1405.7085) (cf. Theorem C.1) under $$(\epsilon,\delta)$$-DP. At a high level, one can represent the high-probability regret in [(1.1)](#eq1) under DP-FTRL as follows (assume Lipschitz constant of $$f_t$$ is $$L=1$$, $$x_1 = 0$$ and $$\lVert x \rVert_2 \leq D^2$$).  
+Let us summarize the key utility (regret) result in [[KMSTTX21]](https://arxiv.org/pdf/2103.00039.pdf) (cf. Theorem C.1) under $$(\epsilon,\delta)$$-DP. At a high level, one can represent the high-probability regret in [(1.1)](#eq1) under DP-FTRL as follows (assume Lipschitz constant of $$f_t$$ is $$L=1$$, $$x_1 = 0$$ and $$\lVert x \rVert_2 \leq D^2$$).  
 
 <a id="eq2"></a>
 $$
@@ -39,9 +39,9 @@ $$
 $$
 
 
-*Remark 1.1:* From the online regret guarantee, one can follow the standard online-to-batch approach to obtain the bound on population excess risk when $$\xi_t$$ is sampled from a fixed distribution. The high-probability regret bound (i.e., Theorem C.1 in [[KMSTTX21]](https://arxiv.org/abs/1405.7085)) leads to high-probability population excess risk bound while an expected regret bound leads to an expected excess risk bound. For this reason, some work only plugs in expected error in prefix sum for only expected population excess risk bound.
+*Remark 1.1:* From the online regret guarantee, one can follow the standard online-to-batch approach to obtain the bound on population excess risk when $$\xi_t$$ is sampled from a fixed distribution. The high-probability regret bound (i.e., Theorem C.1 in [[KMSTTX21]](https://arxiv.org/pdf/2103.00039.pdf)) leads to high-probability population excess risk bound while an expected regret bound leads to an expected excess risk bound. For this reason, some work only plugs in expected error in prefix sum for only expected population excess risk bound.
 
-*Remark 1.2:*   As shown in [[KMSTTX21]](https://arxiv.org/abs/1405.7085), the total added noise in DP-FTRL is similar to the one in DP-SGD with amplification. For a quick high-level intuition, consider the case $$T = n$$ ($$n$$ is the number of samples) for both DP-FTRL and DP-SGD with amplification (either by subsampling or shuffling). The total amount of noise for DP-FTRL is $$\tilde{O}_{\delta}(1/\epsilon^2)$$ for each coordinate $$i\in [d]$$ as already mentioned above. For a constant learning rate of SGD, the final iterate is simply the sum of true gradients plus $$T=n$$ added noise. Due to amplification, for $$(\epsilon,\delta)$$-DP, the variance of each step's noise only needs to be $$\tilde{O}_{\delta}(1/(\epsilon^2 n))$$ (due to the standard $$1/\sqrt{n}$$ amplification). As a result, the total noise in DP-SGD is $$n\cdot \tilde{O}_{\delta}(1/(\epsilon^2 n))$$, which is the same as the one in DP-FTRL.
+*Remark 1.2:*   As shown in [[KMSTTX21]](https://arxiv.org/pdf/2103.00039.pdf), the total added noise in DP-FTRL is similar to the one in DP-SGD with amplification. For a quick high-level intuition, consider the case $$T = n$$ ($$n$$ is the number of samples) for both DP-FTRL and DP-SGD with amplification (either by subsampling or shuffling). The total amount of noise for DP-FTRL is $$\tilde{O}_{\delta}(1/\epsilon^2)$$ for each coordinate $$i\in [d]$$ as already mentioned above. For a constant learning rate of SGD, the final iterate is simply the sum of true gradients plus $$T=n$$ added noise. Due to amplification, for $$(\epsilon,\delta)$$-DP, the variance of each step's noise only needs to be $$\tilde{O}_{\delta}(1/(\epsilon^2 n))$$ (due to the standard $$1/\sqrt{n}$$ amplification). As a result, the total noise in DP-SGD is $$n\cdot \tilde{O}_{\delta}(1/(\epsilon^2 n))$$, which is the same as the one in DP-FTRL.
 
 
 ### A peek into follow-up posts...
