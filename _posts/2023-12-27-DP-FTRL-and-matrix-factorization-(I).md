@@ -17,7 +17,7 @@ Building upon the classic online learning algorithm FTRL, DP-FTRL [[KMSTTX21]](h
 
 <div class="divider"></div>
 
-DP-FTRL essentially leverages the idea of tree-based algorithm to achieve a similar or better privacy-utility trade-off than DP-SGD, without requiring the use of privacy amplification by subsampling or shuffling. One utility metric considered in [[KMSTTX21]](https://arxiv.org/abs/1405.7085) is online (average) regret defined below.
+DP-FTRL essentially leverages the idea of tree-based algorithm to achieve a similar or better privacy-utility trade-off than DP-SGD, without requiring the use of privacy amplification by subsampling or shuffling. One utility metric considered in [[KMSTTX21]](https://arxiv.org/pdf/2103.00039.pdf) is online (average) regret defined below.
 
 <a id="eq1"></a>
 $$
