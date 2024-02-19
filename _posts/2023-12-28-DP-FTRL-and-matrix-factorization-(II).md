@@ -16,7 +16,7 @@ $$
 \newcommand{\cN}{\mathcal{N}}
 $$
 
-In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix matrix factorization mechanism.
+In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix factorization mechanism.
 
 <div class="divider"></div>
 
@@ -30,13 +30,14 @@ The high-level intuition behind this method is to adjust the space where one add
 
 Before searching for better mechanisms, let us first cast the tree-based algorithm and the other two mechanism to the matrix factorization framework with different choices of $$(\bB,\bC)$$. From this, we can see that indeed a careful choice of $$(\bB,\bC)$$ can improve the performance.
 
-**Example 1 (Simple I mechanism as matrix factorization)** Simple I mechanism in [[CSS11]](https://eprint.iacr.org/2010/076.pdf) simply adds noise to each non-private prefix sum. This corresponds to $$\bB = \bI$$ and $$\bC = \bA$$. For privacy, the sensitivity is on the order of $$\sqrt{T}$$ in $$\ell_2$$ norm as changing the first element $$g_1$$ will impact all $$T$$ outputs in the space of $$\bC \bG = \bA \bG$$. Hence, each element in $$\bZ$$ is $$\cN(0,\sigma^2)$$ with $$\sigma^2 \approx O_{\delta}\left(\frac{T}{\epsilon^2}\right)$$ for $$(\epsilon,\delta)$$-DP.  For utility, each noisy prefix sum is simply the non-private prefix sum plus the $$t$$-th row vector $$z_t$$ in $$\bZ$$. Putting the two together, we have the total noise in the noisy prefix sum is $$O_{\delta}(T/\epsilon^2)$$ for $$(\epsilon,\delta)$$-DP.
+**Example 2.1 (Simple I mechanism as matrix factorization)** Simple I mechanism in [[CSS11]](https://eprint.iacr.org/2010/076.pdf) simply adds noise to each non-private prefix sum. This corresponds to $$\bB = \bI$$ and $$\bC = \bA$$. For privacy, the sensitivity is on the order of $$\sqrt{T}$$ in $$\ell_2$$ norm as changing the first element $$g_1$$ will impact all $$T$$ outputs in the space of $$\bC \bG = \bA \bG$$. Hence, each element in $$\bZ$$ is $$\cN(0,\sigma^2)$$ with $$\sigma^2 \approx O_{\delta}\left(\frac{T}{\epsilon^2}\right)$$ for $$(\epsilon,\delta)$$-DP.  For utility, each noisy prefix sum is simply the non-private prefix sum plus the $$t$$-th row vector $$z_t$$ in $$\bZ$$. Putting the two together, we have the total noise in the noisy prefix sum is $$O_{\delta}(T/\epsilon^2)$$ for $$(\epsilon,\delta)$$-DP.
 
-**Example 2 (Simple II mechanism as matrix factorization)** Simple II mechanism in [[CSS11]](https://eprint.iacr.org/2010/076.pdf) simply adds noise to each input data point and then accumulates all noisy data points for noisy prefix sum. This corresponds to $$\bB = \bA$$ and $$\bC = \bI$$. For privacy, the sensitivity is on the order of $$O(1)$$ in $$\ell_2$$ norm as changing any element $$g_t$$ will at most change $$O(1)$$ in the output.  Hence, each element in $$\bZ$$ is $$\cN(0,\sigma^2)$$ with $$\sigma^2 \approx O_{\delta}\left(\frac{1}{\epsilon^2}\right)$$ for $$(\epsilon,\delta)$$-DP.  For utility, each noisy prefix sum needs to accumulate all previous noisy data points. Putting the two together, we have the total noise in the noisy prefix sum is again $$O_{\delta}(T/\epsilon^2)$$ for $$(\epsilon,\delta)$$-DP, the same as above.
+**Example 2.2 (Simple II mechanism as matrix factorization)** Simple II mechanism in [[CSS11]](https://eprint.iacr.org/2010/076.pdf) simply adds noise to each input data point and then accumulates all noisy data points for noisy prefix sum. This corresponds to $$\bB = \bA$$ and $$\bC = \bI$$. For privacy, the sensitivity is on the order of $$O(1)$$ in $$\ell_2$$ norm as changing any element $$g_t$$ will at most change $$O(1)$$ in the output.  Hence, each element in $$\bZ$$ is $$\cN(0,\sigma^2)$$ with $$\sigma^2 \approx O_{\delta}\left(\frac{1}{\epsilon^2}\right)$$ for $$(\epsilon,\delta)$$-DP.  For utility, each noisy prefix sum needs to accumulate all previous noisy data points. Putting the two together, we have the total noise in the noisy prefix sum is again $$O_{\delta}(T/\epsilon^2)$$ for $$(\epsilon,\delta)$$-DP, the same as above.
 
 
-**Example 3 (Tree-based algorithm as matrix factorization)**    The tree-based algorithm adds noise to the tree nodes in the complete binary tree as shown in [Fig.1.1](https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)#tree) of the previous post and then accumulates the corresponding noisy tree nodes for the final noisy prefix sum. This can also be viewed as a proper choice of $$\bB$$ and $$\bC$$. Let us first see a concrete toy example for the simple case when $$T = 4$$ and then give results for the general case later. In particular, for $$T = 4$$, we have
+**Example 2.3 (Tree-based algorithm as matrix factorization)**    The tree-based algorithm adds noise to the tree nodes in the complete binary tree as shown in [Fig.1.1](https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)#tree) of the previous post and then accumulates the corresponding noisy tree nodes for the final noisy prefix sum. This can also be viewed as a proper choice of $$\bB$$ and $$\bC$$. Let us first see a concrete toy example for the simple case when $$T = 4$$ and then give results for the general case later. In particular, for $$T = 4$$, we have
 
+<a id="eq21"></a>
 $$
 \bC = \begin{pmatrix}
 1 & 0 & 0 & 0 \\
@@ -53,9 +54,11 @@ $$
 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0 & 0 & 1
 \end{pmatrix}.
+\tag{2.1}
 $$
 
 To see it, as shown in the left sub-tree of [Fig.1.1](https://xingyuzhou.org/blog/notes/DP-FTRL-and-matrix-factorization-(I)#tree) of the previous post, the encoder matrix $$\bC \in \Real^{7 \times 4}$$ is responsible for computing the $$7$$ tree nodes (partial sums) using $$4$$ input data points. On the other hand, the decoder $$\bB \in \Real^{4 \times 7}$$ is responsible for computing the noisy prefix sum using the $$7$$ noisy tree nodes. One can check $$\bA = \bB \bC$$. For the general case, by the recursive nature of a binary tree, it is very natural to conjecture that $$\bC$$ would enjoy some recursive formula. Indeed, as shown in [[DMRSG22]](https://arxiv.org/pdf/2202.08312.pdf), if one defines the following recursive formula
+
 
 $$
 \bH_1 = \begin{pmatrix}

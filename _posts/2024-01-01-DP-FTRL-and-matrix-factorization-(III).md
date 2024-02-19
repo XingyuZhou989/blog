@@ -19,7 +19,7 @@ $$
 \newcommand{\cL}{\mathcal{L}}
 $$
 
-In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix matrix factorization mechanism.
+In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix factorization mechanism.
 
 <div class="divider"></div>
 

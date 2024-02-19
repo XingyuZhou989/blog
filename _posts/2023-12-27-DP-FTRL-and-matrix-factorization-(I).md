@@ -3,7 +3,7 @@ comments: true
 title: DP-FTRL and matrix factorization mechanism (I)
 updated: 2023-12-27 22:00
 ---
-In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix matrix factorization mechanism.
+In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix factorization mechanism.
 
 <div class="divider"></div>
 
