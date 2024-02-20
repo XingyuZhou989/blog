@@ -47,7 +47,7 @@ $$
 $$
 Based on this, one key contribution of [[KMCRM23]](https://arxiv.org/abs/2302.01463) is to directly analyze its convergence, which is tighter than the prefix-sum view results in the previous two sections. Moreover, with its new analysis, it recovers the $$O(1/\sqrt{T})$$ for the algorithm in Example 4.1 above (cf. Theorem 4.7 in [[KMCRM23]](https://arxiv.org/abs/2302.01463)).
 
-Let us end this section with another simple algorithm that can achieve $$O(1/\sqrt{T\epsilon})$$ regret as DP-FTRL with tree-based algorithm for $$\epsilon \le 1$$\footnote{In fact, this new algorithm is even better in terms of log terms}.
+Let us end this section with another simple algorithm that can achieve $$O(1/\sqrt{T\epsilon})$$ regret as DP-FTRL with tree-based algorithm for $$\epsilon \le 1$$. In fact, this new algorithm is even better in terms of log terms.
 
 
 **Example 4.1 (Batch OGD)** Under this algorithm, it only updates the model every $$B$$ iterations. For each batch $$m \in [T/B]$$, it computes the gradient using the most recent model parameter, takes the average of the new batch of gradients, and adds noise for privacy. This is essentially running the algorithm in Example 4.1 above with only $$M:= T/B$$ steps and the noise for each step is $$1/B$$ factor smaller due to averaging. Thus, the total regret under $$(\epsilon,\delta)$$-DP can be written as
