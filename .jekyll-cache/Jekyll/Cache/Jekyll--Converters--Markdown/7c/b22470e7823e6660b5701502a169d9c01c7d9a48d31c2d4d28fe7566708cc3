@@ -1,4 +1,4 @@
-I"!<p>In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix factorization mechanism.</p>
+I"G!<p>In this series of blog posts, I plan to write down some of my personal understanding (of course shaped by many wonderful papers) of DP-FTRL and matrix factorization mechanism.</p>
 
 <div class="divider"></div>
 
@@ -39,6 +39,8 @@ where \(\lambda\) is the coefficient of the regularizer in FTRL (which is relate
 <p><strong>Q2.</strong> Is minimizing the maximal error in prefix sum the right metric for utility performance?</p>
 
 <p>Q1 above will lead us to the main topic for the next post in this series – matrix factorization mechanism. Q2 will motivate us to question the tightness of the bound in <a href="#eq2">(1.2)</a>, which will be discussed later.</p>
+
+<p><strong>[Update Mar. 7, 2024]</strong></p>
 
 <p class="center"><strong>THE END</strong></p>
 

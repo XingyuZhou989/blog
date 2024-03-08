@@ -54,6 +54,9 @@ At this moment, we may naturally ask the following questions:
 
 Q1 above will lead us to the main topic for the next post in this series -- matrix factorization mechanism. Q2 will motivate us to question the tightness of the bound in [(1.2)](#eq2), which will be discussed later.
 
+
+**Update Mar. 7, 2024:** A recent [blog post](https://blog.research.google/2024/02/advances-in-private-training-for.html) from Google gives a very nice overview of DP-FTRL and matrix factorization mechanism in practical private FL systems. 
+
 **THE END**
 {: .center}
 
