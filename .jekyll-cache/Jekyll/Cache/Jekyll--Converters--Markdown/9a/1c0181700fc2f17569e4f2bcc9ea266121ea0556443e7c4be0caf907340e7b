@@ -1,4 +1,4 @@
-I"\[\newcommand{\bA}{\mathbf{A}}
+I" \[\newcommand{\bA}{\mathbf{A}}
 \newcommand{\bB}{\mathbf{B}}
 \newcommand{\bC}{\mathbf{C}}
 \newcommand{\cA}{\mathcal{A}}
@@ -42,6 +42,10 @@ Based on this, one key contribution of <a href="https://arxiv.org/abs/2302.01463
 \[\cR_{\text{batch-OGD}}(T) \le O_{\delta}\left(B \cdot \left(\frac{1}{\sqrt{M}} + \frac{1}{B \epsilon  \sqrt{M}}\right)\right).\]
 
 <p>Optimizing the choice of \(B = 1/\epsilon\), yields regret as \(O_{\delta}\left(\frac{1}{\epsilon \sqrt{T}}\right)\).</p>
+
+<div class="divider"></div>
+
+<p><strong>Update Sep. 23, 2024:</strong> While attending TPDP this year, <a href="https://cseweb.ucsd.edu/~yuxiangw/">Yu-Xiang Wang</a> mentioned a very nice view that puts DP-FTRL as an intermediate point between two extreme points (see also Section I.2 in Rachel Redbergâ€™s <a href="https://arxiv.org/pdf/2401.00583">paper</a>). One end point in the spectrum is DP-SGD where i.i.d noise is added at each iteration, while the other end point is objective perturbation where fully correlated noise (identical noise) is added. Thus, DP-FTRL is an intermediate point where some degree of correlation in the noise exists (as shown in <a href="#correlated">Fig. 4.1</a>). As suggested by Yu-Xiang, given that both two points (DP-SGD and objective perturbation) can achieve a good performance (even optimal), it gives us hope that DP-FTRL can also achieve an optimal performance.</p>
 
 <p class="center"><strong>THE END</strong></p>
 

@@ -58,6 +58,9 @@ Let us end this section with another simple algorithm that can achieve $$O(1/\sq
 
    Optimizing the choice of $$B = 1/\epsilon$$, yields regret as $$O_{\delta}\left(\frac{1}{\epsilon \sqrt{T}}\right)$$.
 
+<div class="divider"></div>
+
+**Update Sep. 23, 2024:** While attending TPDP this year, [Yu-Xiang Wang](https://cseweb.ucsd.edu/~yuxiangw/) mentioned a very nice view that puts DP-FTRL as an intermediate point between two extreme points (see also Section I.2 in Rachel Redberg's [paper](https://arxiv.org/pdf/2401.00583)). One end point in the spectrum is DP-SGD where i.i.d noise is added at each iteration, while the other end point is objective perturbation where fully correlated noise is added (i.e., identical noise). Thus, DP-FTRL is an intermediate point where some degree of correlation in the noise exists (as shown in [Fig. 4.1](#correlated)). As suggested by Yu-Xiang, given that both two points (DP-SGD and objective perturbation) can achieve a good performance (even optimal), it gives us hope that DP-FTRL can also achieve an optimal performance. 
 
 
 [^1]: One subtlety here is that gradients in $$\bG$$ in model training is adaptive rather than fixed. However, as shown in [[DMRSG22]](https://arxiv.org/pdf/2202.08312.pdf), for the Gaussian mechanism, it suffices to consider the non-adaptive one.
