@@ -56,7 +56,9 @@ Let us end this section with another simple algorithm that can achieve $$O(1/\sq
        \cR_{\text{batch-OGD}}(T) \le O_{\delta}\left(B \cdot \left(\frac{1}{\sqrt{M}} + \frac{1}{B \epsilon  \sqrt{M}}\right)\right).
    $$
 
-   Optimizing the choice of $$B = 1/\epsilon$$, yields regret as $$O_{\delta}\left(\frac{1}{\epsilon \sqrt{T}}\right)$$.
+   Optimizing the choice of $$B = 1/\epsilon$$, yields regret as $$O_{\delta}\left(\frac{1}{\sqrt{\epsilon T}}\right)$$.
+
+**Remark** The same batching technique above can be used to improve existing result on *private adversary bandit*, i.e., a similar improvement from $$1/\epsilon$$ to $$1/\sqrt{\epsilon}$$. This result is too short for a paper:), but maybe interesting.
 
 <div class="divider"></div>
 
