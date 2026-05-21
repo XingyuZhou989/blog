@@ -229,7 +229,7 @@ Now, it's time to take a break by appreciating the masterpiece of Monet.[^monet]
 {: .center}
 ![Monet](../assets/post_images/fog.jpg){:height="400px" width="500px"}
 
-**Impression, Sunrise**
+**Houses of Parliament in the Fog**
 {: .center}
 _courtesy of https://high.org/collection/houses-of-parliament-in-the-fog/_
 {: .center}
