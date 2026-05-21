@@ -1,6 +1,6 @@
 ---
 comments: true
-title: "When Determinants Are Not Enough: Private Rare Switching"
+title: "When determinants are not enough: private rare switching"
 updated: 2026-05-20 23:30
 ---
 $$
