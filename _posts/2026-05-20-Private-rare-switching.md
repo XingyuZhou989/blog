@@ -212,11 +212,25 @@ This new proof also explains why the new update rule can get rid of the issue in
 
 We can now also see that with the old update rule, it is impossible to control the worst-case direction without monotonicity since the eigenvalues in other directions can be much smaller and hence a very large value in the worst-case direction can still make the determinant small.
 
+<div class="divider"></div>
+
+### The Reflection
+
+Codex suggests a new rare-switching rule for the private case that preserves the desired guarantees. Upon closer inspection, the rule can be traced back to an alternative proof of a key lemma. The ingredients in the proof are not new, but the useful part is the way they are selected, combined, and applied to the right object. In this sense, this mini example is somewhat in the same spirit as the unit distance problem.
+
+This reminds me of several things. First, for me, the most enjoyable part of doing research is not necessarily its impact, nor the final breakthrough result. Rather, it is the moment when I understand something a little more deeply.[^intrinsic] In this sense, research carries its own intrinsic reward. One thing I still remember from high school and college is that I often went to my teachers or professors to ask clarification questions, or to explain my own understanding and hope they could verify it.[^world-model] Now, with AI, students may have a much more convenient way to test, refine, and verify their own understanding, if they want.
+
+Second, I tend to view deep understanding of a subject as learning a good representation. A good representation compresses many details into the right concepts, and because of that, it can be flexible and useful when adapted to new problems. In many cases, what is needed to make a significant impact, either in theory or in practice, is not necessarily a completely new theory or method. Rather, it may be something that grows naturally out of a better compression or representation of existing knowledge, one that identifies the "core set" of ideas from which a much larger unknown space can be explored.
+
+So, with today's AI tools, humans may become more efficient at maximizing this kind of intrinsic reward: understanding more, clarifying faster, and building better representations. Perhaps we should also think about how to steer AI systems, either during training or through test-time scaling, toward a similar objective: not merely producing answers, but actively seeking good representations, useful abstractions, and core sets of ideas. To me, this connects naturally to the fundamental problem of "exploration" in reinforcement learning, which is currently my biggest interest.
+
 [^1]: I cleaned up and re-organized the original proof of Codex, which was correct but not that easy to read.
 [^2]: For Gaussian matrices, this condition holds with high probability.
 [^old-rule]: Of course, one may ask if we can keep the same update rule but with a more advanced analysis to maintain the same performance guarantees. It turns out that this is not possible, which will become clear at the end of this post.
 [^markdown]: In fact, this markdown file is directly generated from my source `.tex` file by Codex.
 [^monet]: In fact, this figure is also chosen by Codex with the following reasoning: the post is about how the usual determinant/volume view becomes unreliable once private noise enters. Monet's fog paintings are visually similar in spirit: the global shape is still there, but the atmosphere/noise obscures the clean structure, so one has to look more carefully for the right signal. That feels close to "determinants are not enough; we need the worst-case direction."
+[^intrinsic]: Of course, this is a privilege. Moreover, it can also lead to an embarrassing outcome where there is neither impact nor deep understanding. You can name me here.
+[^world-model]: Using today's fancy language, I was trying to build and calibrate my own world model.
 
 **THE END**
 {: .center}
