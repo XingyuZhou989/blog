@@ -11,7 +11,7 @@ $$
 
 In this post, I would like to share a small research moment where Codex helped me find the right way to adapt rare switching to the private setting. The standard determinant-based update rule in linear bandits and RL works beautifully because the design matrix grows monotonically. But once Gaussian noise is added for privacy, this monotonicity can fail, and the usual analysis no longer goes through. The key reason is that determinant growth controls volume, while regret analysis needs control of the worst direction. To address this, Codex comes up with a  different rare-switching rule based on the generalized Rayleigh quotient, which restores logarithmic policy updates and the desired confidence-width comparison up to a constant  factor.
 
-A PDF version of this note is available [here](https://xingyuzhou.org/documents/Private_Rare_Switching.pdf).[^markdown]
+A PDF version of this note is available [here](https://arxiv.org/pdf/2605.23131).[^markdown]
 
 **Note.** For better math rendering, right click any equation and choose `Math Settings` → `Math Renderer` → `Common HTML`.
 
